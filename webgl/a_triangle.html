@@ -10,13 +10,18 @@
 				background-color: white;
 			}
 		</style>
+		<script src="gl-matrix-min.js"></script>
 		<script id="shader-vs" type="x-shader/x-vertex">
 			attribute vec3 aVertexPosition;
 			attribute vec3 aVertexColor;
 
+			uniform mat4 uMVMatrix;
+			uniform mat4 uPMatrix;
+
 			varying highp vec4 vColor;
 			void main(void) {
-				gl_Position = vec4(aVertexPosition, 1.0);
+				//gl_Position = vec4(aVertexPosition, 1.0);
+				gl_Position = uPMatrix * uMVMatrix * vec4(aVertexPosition, 1.0);
 				vColor = vec4(aVertexColor, 1.0);
 			}
 		</script>
@@ -39,6 +44,9 @@
 				trianglesColorBuffer = null;
 			
 			var	angle = 0.0;
+			
+			var 	mvMatrix = mat4.create(),
+				pMatrix = mat4.create();
 
 			function initWebGL() {
 				canvas = document.getElementById("my-canvas");
@@ -46,13 +54,16 @@
 					gl = canvas.getContext("webgl") || canvas.getContext("experimental-webgl");
 				}catch(e){
 				}
-				
+			
+  	 				
 				if(gl) {
 					initShaders();
 					setupBuffers();
+					getMatrixUniforms();
 					(function animLoop(){
 						setupWebGL();
 						setupDynamicBuffers();
+						setMatrixUniforms();
 						drawScene();
 						requestAnimationFrame(animLoop, canvas);
 					})();
@@ -61,11 +72,16 @@
 				}
 			}
 			function setupWebGL() {
+					// set the clear color to shade of green
 					gl.clearColor(0.1, 0.5, 0.1, 1.0);
 					gl.clear(gl.COLOR_BUFFER_BIT);
-					//gl.viewport(0, 0, canvas.width, canvas.height);
-					gl.viewport(0, canvas.height/2.0, canvas.width/2.0, canvas.height/2.0);
+					gl.viewport(0, 0, canvas.width, canvas.height);
+					//gl.viewport(0, canvas.height/2.0, canvas.width/2.0, canvas.height/2.0);
+					mat4.perspective(45, canvas.width / canvas.height, 0.1, 100.0, pMatrix);
+					mat4.identity(mvMatrix);
+					mat4.translate(mvMatrix, [0, 0, -2.0]);
 			}
+
 			
 			function initShaders(){
 				//get shader source
@@ -128,8 +144,8 @@
 				var triangleVertices = [
 					//left triangle
 					-0.5 + x_translation, 0.5, 0.0,
-					 0.0 + x_translation, 0.0, 0.0,
-					-0.5 + x_translation,-0.5, 0.0,
+					 0.0 + x_translation, 0.0, -0.5,
+					-0.5 + x_translation,-0.5, 0.5,
 
 					//right triangle
 					0.5, 0.5 + x_translation, 0.0,
@@ -155,6 +171,16 @@
 				gl.vertexAttribPointer(vertexColorAttribute, 3, gl.FLOAT, false, 0, 0);
 
 				gl.drawArrays(gl.TRIANGLES, 0, 6);
+			}
+			
+			function getMatrixUniforms(){
+					glProgram.pMatrixUniform = gl.getUniformLocation(glProgram, "uPMatrix");
+					glProgram.mvMatrixUniform = gl.getUniformLocation(glProgram, "uMVMatrix");
+			}
+
+			function setMatrixUniforms(){
+					gl.uniformMatrix4fv(glProgram.pMatrixUniform, false, pMatrix);
+					gl.uniformMatrix4fv(glProgram.mvMatrixUniform, false, mvMatrix);
 			}
 		</script>
 	</head>
