@@ -1,0 +1,2 @@
+
+Nothing happens in WebGL without shaders.
