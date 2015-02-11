@@ -1,2 +1,39 @@
 
 Nothing happens in WebGL without shaders.
+
+=========================================
+Chapter 3:
+
+============
+when we look at an image, we depend on clues 
+such as variance on the faces of soid in terms 
+of lighting:darkness/illumination,
+reflection,
+shadows, and
+directional pattern changes
+from textures
+to inform us where
+one face ends and
+another begins.
+----------------------------------------------
+============
+Textures
+============
+Textures are images that are applied to
+surfaces within our program.
+
+Images used as textures
+may be bitmapped in origin 
+or
+generated procedurally.
+
+Textures must be applied(mapped) to our image
+and in doing so are usually
+streched,
+scaled,
+distorted, and/or
+repeated.
+------------------------------------------------
+===================
+Texture Coordinates
+===================
