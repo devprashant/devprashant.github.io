@@ -67,10 +67,10 @@ function WebGL(CID, FSID, VSID){
 			var pmatrix = this.GL.getUniformLocation(this.ShaderProgram, "PerspectiveMatrix");
 			this.GL.uniformMatrix4fv(pmatrix, false, new Float32Array(PerspectiveMatrix));
 
-			var tmatrix = this.GL.getUniformLocation(this.ShaderProgram, "TransformMatrix");
+			var tmatrix = this.GL.getUniformLocation(this.ShaderProgram, "TransformationMatrix");
 			this.GL.uniformMatrix4fv(tmatrix, false, new Float32Array(TransformMatrix));
 
-			this.GL.drawElements(this.GL.TRIANGLES, Object.Triangles.length, this.GL.UNSIGNED_SHORT, 0);
+			this.GL.drawElements(this.GL.TRIANGLES, Object.Trinagles.length, this.GL.UNSIGNED_SHORT, 0);
 
 
 		};
@@ -165,7 +165,7 @@ var Cube = {
 				1.0, -1.0, -1.0,
 				-1.0, -1.0, -1.0
 			],
-			Triangles : [ 
+			Trinagles : [ 
 
 				//Front
 				0, 1, 2,
