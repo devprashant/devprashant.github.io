@@ -15,10 +15,16 @@
 			TextureImage = new Image();
 			TextureImage.onload = function(){
 				Texture = GL.LoadTexture(TextureImage);
-				GL.Draw(Cube, Texture);
+				setInterval(Update, 33);
+				//GL.Draw(Cube, Texture);
 			};
+
 			TextureImage.src = "Texture.png";
 		}
+		function Update(){
+				GL.GL.clear(16384 | 256);
+				GL.Draw(Cube, Texture);
+			}
 		</script>
 	</head>
 <body onload="Ready()">

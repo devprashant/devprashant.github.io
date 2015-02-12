@@ -108,10 +108,16 @@ function MakePerspective(FOV, AspectRatio, Closest, Farest){
 }
 
 function MakeTransform(Object){
+	var y = Object.Rotation * (Math.PI / 180.0);
+	var A = Math.cos(y);
+	var B = -1 * Math.sin(y);
+	var C = Math.sin(y);
+	var D = Math.cos(y);
+	Object.Rotation += .3;
 	return [
-		1, 0, 0, 0,
+		A, 0, B, 0,
 		0, 1, 0, 0,
-		0, 0, 1, 0,
+		C, 0, D, 0,
 		0, 0, -6, 1
 	];
 }
@@ -128,6 +134,7 @@ function LoadShader(Script){
 }
 
 var Cube = {
+			Rotation : 0,
 			Vertices : [ //XYZ Coordinates
 				//Front
 				1.0, 1.0, -1.0,
