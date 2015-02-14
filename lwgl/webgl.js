@@ -1,17 +1,6 @@
 
-var triangleVertexPositionBuffer;
-var squareVertexPositionBuffer;
-function webGLStart(){
-	var canvas = document.getElementById("lesson01-canvas");
-	initGL(canvas);
-	initShaders();
-	initBuffers();
 
-	gl.clearColor(0.0, 0.0, 0.0, 1.0);
-	gl.enable(gl.DEPTH_TEST);
 
-	drawScene();
-}
 
 var gl;
 function initGL(canvas){
@@ -26,31 +15,9 @@ function initGL(canvas){
 	}
 }
 
-var vMatrix = mat4.create();
-var pMatrix = mat4.create();
 
-var shaderProgram;
-function initShaders(){
-	var fragmentShader = getShader(gl, "shader-fs");
-	var vertexShader = getShader(gl, "shader-vs");
 
-	shaderProgram = gl.createProgram();
-	gl.attachShader(shaderPrgram, vertexShader);
-	gl.atatchShader(shaderProgram, fragmentShader);
-	gl.linkProgram(shaderProgram);
 
-	if (!gl.getProgramParameter(shaderProgram, gl.LINK_STATUS) {
-		alert("Could not initialise shaders");
-	}
-
-	gl.useProgram(shaderProgram);
-	
-	shaderProgram.vertexPositionAttribute = gl.getAttribLocation(shaderProgram, "aVertexPosition");
-	gl.enableVertexAttribArray(shaderProgram.vertexPositionAttribute);
-	
-	shaderProgram.pMatrixUniform = gl.getUniformLocation(shaderProgram, 'uPMatrix");
-	shaderProgram.mvMatrixUniform = gl.getUniformLocaion(sahderProgram, "uMVMatrix");
-}
 
 function getShader(gl, id){
 	var shaderScript = document.getElementById(id);
@@ -58,7 +25,7 @@ function getShader(gl, id){
 		return null;
 	}
 	
-	var str = "":
+	var str = "";
 	var k = shaderScript.firstChild;
 	while (k) {
 		if (k.nodeType == 3) 
@@ -70,13 +37,13 @@ function getShader(gl, id){
 	if (shaderScript.type == "x-shader/x-fragment"){
 		shader = gl.createShader(gl.FRAGMENT_SHADER);
 	} else if (shaderScript.type == "x-shader/x-vertex"){
-		shader = gl.createShader(gL.VERTEX_SHADER);
+		shader = gl.createShader(gl.VERTEX_SHADER);
 	} else {
 		return null;
 	}
 
 	gl.shaderSource(shader, str);
-	gl.compieShader(shader);
+	gl.compileShader(shader);
 
 	if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
 		alert(gl.getShaderInfoLog(shader));
@@ -87,10 +54,39 @@ function getShader(gl, id){
 
 }
 
+var shaderProgram;
+function initShaders(){
+	var fragmentShader = getShader(gl, "shader-fs");
+	var vertexShader = getShader(gl, "shader-vs");
+
+	shaderProgram = gl.createProgram();
+	gl.attachShader(shaderProgram, vertexShader);
+	gl.attachShader(shaderProgram, fragmentShader);
+	gl.linkProgram(shaderProgram);
+
+	if (!gl.getProgramParameter(shaderProgram, gl.LINK_STATUS)) {
+		alert("Could not initialise shaders");
+	}
+
+	gl.useProgram(shaderProgram);
+	
+	shaderProgram.vertexPositionAttribute = gl.getAttribLocation(shaderProgram, "aVertexPosition");
+	gl.enableVertexAttribArray(shaderProgram.vertexPositionAttribute);
+	
+	shaderProgram.pMatrixUniform = gl.getUniformLocation(shaderProgram, "uPMatrix");
+	shaderProgram.mvMatrixUniform = gl.getUniformLocation(shaderProgram, "uMVMatrix");
+}
+
+var mvMatrix = mat4.create();
+var pMatrix = mat4.create();
+
 function setMatrixUniforms(){
 	gl.uniformMatrix4fv(shaderProgram.pMatrixUniform, false, pMatrix);
-	gl.uniformMatrix4fv(shadereProgra.mvMatrixUniform, false, mvMatrix);
+	gl.uniformMatrix4fv(shaderProgram.mvMatrixUniform, false, mvMatrix);
 }
+
+var triangleVertexPositionBuffer;
+var squareVertexPositionBuffer;
 function initBuffers(){
 	triangleVertexPositionBuffer = gl.createBuffer();
 	gl.bindBuffer(gl.ARRAY_BUFFER, triangleVertexPositionBuffer);
@@ -120,7 +116,7 @@ function initBuffers(){
 
 function drawScene(){
 	gl.viewport(0, 0, gl.viewportWidth, gl.viewportHeight);
-	gl.clear(gl.COLOR_BUFFER_BIT || gl.DEPTH_BUFFER_BIT);
+	gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 	mat4.perspective(45, gl.viewportWidth / gl.viewportHeight, 0.1, 100.0, pMatrix);
 	mat4.identity(mvMatrix);
 
@@ -136,4 +132,16 @@ function drawScene(){
 	setMatrixUniforms();
 	gl.drawArrays(gl.TRIANGLE_STRIP, 0, squareVertexPositionBuffer.numItems);
 	
+}
+
+function webGLStart(){
+	var canvas = document.getElementById("lesson01-canvas");
+	initGL(canvas);
+	initShaders();
+	initBuffers();
+
+	gl.clearColor(0.0, 0.0, 0.0, 1.0);
+	gl.enable(gl.DEPTH_TEST);
+
+	drawScene();
 }

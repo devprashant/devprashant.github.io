@@ -17,9 +17,13 @@
 		uniform mat4 uPMatrix;
 
 		void main(void) {
-			gl_Position = uPMatrix * uMVMAtrix * vec4(aVertexPosition, 1.0);
+			gl_Position = uPMatrix * uMVMatrix * vec4(aVertexPosition, 1.0);
 		}
 	</script>
-<body onload="webGlStart();">
+	<script src="gl-matrix-min.js" type="text/javascript"></script>
+	<script src="webgl.js" type="text/javascript"></script>
+	
+<body onload="webGLStart();">
 	<canvas id="lesson01-canvas" style="border: none;" width="500" height="500"></canvas>
 </body>
+</html>
