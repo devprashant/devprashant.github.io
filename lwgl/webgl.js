@@ -182,7 +182,7 @@ function drawScene(){
 	setMatrixUniforms(); //send mvMatrix from JS to WebGL(GPU)
 	gl.drawArrays(gl.TRIANGLES, 0,triangleVertexPositionBuffer.numItems);
 
-	mvPopMatrix();
+	//mvPopMatrix();
 
 
 
@@ -200,7 +200,7 @@ function drawScene(){
 	setMatrixUniforms();//send mvMatrix from JS to WebGL(GPU)
 	gl.drawArrays(gl.TRIANGLE_STRIP, 0, squareVertexPositionBuffer.numItems);
 
-	mvPopMatrix();
+	//mvPopMatrix();
 	
 }
 
