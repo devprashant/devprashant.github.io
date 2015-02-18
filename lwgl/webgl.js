@@ -2,6 +2,7 @@
 
 
 
+
 var gl;
 function initGL(canvas){
 	try {
@@ -170,6 +171,44 @@ function initBuffers(){
 	cubeVertexPositionBuffer = gl.createBuffer();
 	gl.bindBuffer(gl.ARRAY_BUFFER, cubeVertexPositionBuffer);
 	vertices = [
+			//front face
+			-1.0, -1.0,  1.0,
+			 1.0, -1.0,  1.0,
+			-1.0,  1.0,  1.0,
+			 1.0,  1.0,  1.0,
+
+			 //back face
+			-1.0, -1.0, -1.0,
+			 1.0, -1.0, -1.0,
+			-1.0,  1.0, -1.0,
+			 1.0,  1.0, -1.0,
+
+			 //left face
+			 1.0, -1.0,  1.0,
+			 1.0,  1.0,  1.0,
+			 1.0, -1.0, -1.0,
+			 1.0,  1.0, -1.0,
+
+			 //right face
+			-1.0, -1.0,  1.0,
+			-1.0,  1.0,  1.0,
+			-1.0, -1.0, -1.0,
+			-1.0,  1.0, -1.0,
+
+			//top face
+			 1.0, 1.0, -1.0,
+			 1.0, 1.0,  1.0,
+  			-1.0, 1.0, -1.0,
+  			-1.0, 1.0,  1.0,
+
+  			//bottom face 
+   			 1.0, -1.0, -1.0,
+			 1.0, -1.0,  1.0,
+  			-1.0, -1.0, -1.0,
+  			-1.0, -1.0,  1.0,
+
+	];
+/*	vertices = [
 		//front face
 		-1.0, -1.0, 1.0,
 		 1.0, -1.0, 1.0,
@@ -205,7 +244,7 @@ function initBuffers(){
 		  -1.0, -1.0,  1.0,
 		  -1.0,  1.0,  1.0,
 		  -1.0,  1.0, -1.0
-	];
+	];*/
 	gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
 	cubeVertexPositionBuffer.itemSize = 3;
 	cubeVertexPositionBuffer.numItems = 24;
@@ -288,9 +327,10 @@ function drawScene(){
 	gl.bindBuffer(gl.ARRAY_BUFFER, cubeVertexColorBuffer);
 	gl.vertexAttribPointer(shaderProgram.vertexColorAttribute, cubeVertexColorBuffer.itemSize, gl.FLOAT, false, 0, 0);
 
-	gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, cubeVertexIndexBuffer);
+	//gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, cubeVertexIndexBuffer);
 	setMatrixUniforms();//send mvMatrix from JS to WebGL(GPU)
-	gl.drawElements(gl.TRIANGLES, cubeVertexIndexBuffer.numItems, gl.UNSIGNED_SHORT, 0);
+	//gl.drawElements(gl.TRIANGLES, cubeVertexIndexBuffer.numItems, gl.UNSIGNED_SHORT, 0);
+	gl.drawArrays(gl.TRIANGLES, 0, cubeVertexPositionBuffer.numItems);
 	mvPopMatrix();
 	
 }
