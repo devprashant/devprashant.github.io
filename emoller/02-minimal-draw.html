@@ -1,22 +1,8 @@
 <!DOCTYPE html>
 <html>
 	<canvas id='c' width="400" height="400"></canvas>
+	<script src="webgl-utils.js"></script>
 	<script>
-		function createShader(str, type){
-			var shader = gl.createShader(type);
-			gl.shaderSource(shader, str);
-			gl.compileShader(shader);
-			return shader;
-		}
-		function createProgram(vstr, fstr){
-			var program = gl.createProgram();
-			var vshader = createShader(vstr, gl.VERTEX_SHADER);
-			var fshader = createShader(fstr, gl.FRAGMENT_SHADER);
-			gl.attachShader(program, vshader);
-			gl.attachShader(program, fshader);
-			gl.linkProgram(program);
-			return program;
-		}
 		var c = document.getElementById('c');
 		var gl = c.getContext('experimental-webgl');
 		var vertexPosBuffer = gl.createBuffer();
