@@ -25,7 +25,7 @@
 				y = 2.0*x*y+textCoord.y;
 				x = xtemp;
 				if (x*x+y*y >= 8.0){
-					float d = float(iteration) / 20.0;
+					float d = (float(iteration) - (log(log(sqrt(x*x+y*y))) / log(2.0))) / 50.0;
 					return vec4(d,d,d,1);
 				}
 			}
