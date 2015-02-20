@@ -50,6 +50,13 @@
 		var gl = c.getContext('experimental-webgl');
 		var offset = [-0.5, 0];
 		var scale = 1.35;
+		var iv = null;
+		var actions = {};
+		var keyMappings = { '37' : 'panleft', '38' : 'panup', '39' : 'panright', '40' : 'pandown',
+							'90' : 'zoomin', '88' : 'zoomout'};
+		for (var k in keyMappings){
+			actions[keyMappings[k]] = false;
+		}
 		var vertexPosBuffer = screenQuad();
 				
 	    var vs = document.getElementById('vshader').textContent;
@@ -60,11 +67,41 @@
 		program.canvasSizeUniform = gl.getUniformLocation(program, 'uCanvasSize');
 		program.offsetUniform = gl.getUniformLocation(program, 'uOffset');
 		program.scaleUniform = gl.getUniformLocation(program, 'uScale');
-		gl.enableVertexAttribArray(program.vertexPosArray);
+		gl.enableVertexAttribArray(program.vertexPosAttrib);
 		gl.vertexAttribPointer(program.vertexPosAttrib, vertexPosBuffer.itemSize, gl.FLOAT, false, 0, 0);
-		gl.uniform2f(program.canvasSizeUniform, c.width, c.height);
-		gl.uniform2f(program.offsetUniform, offset[0], offset[1]);
-		gl.uniform1f(program.scaleUniform, scale);
-		gl.drawArrays(gl.TRIANGLE_STRIP, 0, vertexPosBuffer.numItems);
+
+		window.onkeydown = function(e){
+			var kc = e.keyCode.toString();
+			if (keyMappings.hasOwnProperty(kc)){
+				actions[keyMappings[kc]] = true;
+				if (!iv){
+					iv = setInterval('draw();', 16);
+				}
+			}
+		};
+
+		window.onkeyup = function(e){
+			var kc = e.keyCode.toString();
+			if (keyMappings.hasOwnProperty(kc)){
+				actions[keyMappings[kc]] = false;
+			}
+			for (var j in keyMappings){
+				if (actions[keyMappings[j]]){
+					return;
+				}
+			}
+			iv = null;
+		};
+		function draw(){
+			offset[0] += -(actions.panleft ? scale / 25 : 0) + (actions.panright ? scale / 25 : 0);
+			offset[1] += -(actions.pandown ? scale / 25 : 0) + (actions.panup ? scale / 25 : 0);
+			scale = scale * (actions.zoomin ? 0.975 : 1.0) / (actions.zoomout ? 0.975 : 1.0);
+			gl.uniform2f(program.canvasSizeUniform, c.width, c.height);
+			gl.uniform2f(program.offsetUniform, offset[0], offset[1]);
+			gl.uniform1f(program.scaleUniform, scale);
+			gl.drawArrays(gl.TRIANGLE_STRIP, 0, vertexPosBuffer.numItems);
+
+		}
+		draw();
  	</script>
  </html>
