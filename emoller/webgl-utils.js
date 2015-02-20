@@ -23,3 +23,23 @@ function createProgram(vstr, fstr){
 	}
 	return program;
 }
+
+function screenQuad(){
+	var vertexPosBuffer = gl.createBuffer();
+	gl.bindBuffer(gl.ARRAY_BUFFER, vertexPosBuffer);
+	var vertices = [-1, -1, 1, -1, -1, 1, 1, 1];
+	gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
+	vertexPosBuffer.itemSize = 2;
+	vertexPosBuffer.numItems = 4; 
+
+	/*	 
+	  2____3	
+	  |\   |
+	  |	\  |
+	  |  \ |
+	  |___\|
+
+	  0    1
+	*/  
+	return vertexPosBuffer;
+}
