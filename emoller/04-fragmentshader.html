@@ -30,6 +30,8 @@
 				j = min(j, abs(x*y));
 				if (x*x+y*y >= 8.0){
 					float d = (float(iteration) - (log(log(sqrt(x*x+y*y))) / log(2.0))) / 50.0;
+					v = (1.0 - v) / 2.0;
+					j = (1.0 - j) / 2.0;
 					return vec4(d+j,d,d+v,1);
 				}
 			}
