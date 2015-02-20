@@ -20,13 +20,17 @@
 		vec4 calc(vec2 textCoord){
 			float x = 0.0;
 			float y = 0.0;
+			float v = 10000.0;
+			float j = 10000.0;
 			for (int iteration = 0; iteration < 100; ++iteration){
 				float xtemp = x*x-y*y+textCoord.x;
 				y = 2.0*x*y+textCoord.y;
 				x = xtemp;
+				v = min(v, abs(x*x+y*y));
+				j = min(j, abs(x*y));
 				if (x*x+y*y >= 8.0){
 					float d = (float(iteration) - (log(log(sqrt(x*x+y*y))) / log(2.0))) / 50.0;
-					return vec4(d,d,d,1);
+					return vec4(d+j,d,d+v,1);
 				}
 			}
 			return vec4(0,0,0,1);
