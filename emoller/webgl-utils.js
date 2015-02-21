@@ -55,10 +55,13 @@ function linkProgram(program){
 	}
 }
 
-function loadFile(file, callback, noCache){
+function loadFile(file, callback, noCache, isJson){
 	var request = new XMLHttpRequest();
 	request.onreadystatechange = function(){
 		if (request.readyState == 1){
+			if (isJson){
+				request.overrideMimeType('application/json');
+			}
 			request.send();
 		} else if (request.readyState == 4){
 			if (request.status == 200){
@@ -95,4 +98,5 @@ function loadProgram(vs, fs, callback){
 	}
 	loadFile(vs, vshaderLoaded, true);
 	loadFile(fs, fshaderLoaded, true);
+	return program;
 }
