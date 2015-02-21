@@ -77,7 +77,7 @@ function loadFile(file, callback, noCache){
 	request.open('GET', file, true);
 }
 function loadProgram(vs, fs, callback){
-	var program = gl.createProgram;
+	var program = gl.createProgram();
 	function vshaderLoaded(str){
 		program.vshaderSource = str;
 		if (program.fshaderSource){
