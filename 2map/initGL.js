@@ -10,4 +10,6 @@ function initGL(canvas){
 	if (!gl){
 		alert("Could not initialise WebGL. Sorry");
 	}
+
+	
 }
