@@ -45,7 +45,7 @@ function initBuffers(){
 	//Setting sqaure color buffer
 	squareVertexColorBuffer = gl.createBuffer();
 	gl.bindBuffer(gl.ARRAY_BUFFER, squareVertexColorBuffer);
-	color = [];
+	colors = [];
 	for (var i = 0 ; i < 4; i++){
 		colors = colors.concat([0.5, 0.5, 1.0, 1.0]);
 	}
