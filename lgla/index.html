@@ -126,6 +126,8 @@ function setMatrixUniforms() {
 //=========================Buffers=================================
 var pyramidVertexPositionBuffer;
 var pyramidVertexColorBuffer;
+var squareVertexPositionBuffer;
+var squareVertexColorBuffer;
 
 function initBuffers(){
 	pyramidVertexPositionBuffer = gl.createBuffer();
@@ -175,6 +177,32 @@ function initBuffers(){
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(colors), gl.STATIC_DRAW);
     pyramidVertexColorBuffer.itemSize = 4;
     pyramidVertexColorBuffer.numItems = 12;
+
+    squareVertexPositionBuffer = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, squareVertexPositionBuffer);
+    vertices = [
+        -1.0, 1.0, 0.0,
+        -1.0,-1.0, 0.0,
+         1.0, 1.0, 0.0,
+         1.0,-1.0, 0.0
+    ];
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
+    squareVertexPositionBuffer.itemSize = 3;
+    squareVertexPositionBuffer.numItems = 4;
+
+    squareVertexColorBuffer = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, squareVertexColorBuffer);
+    colors = [
+         1.0, 0.0, 0.0, 1.0,
+         1.0, 1.0, 0.0, 1.0,
+         1.0, 0.0, 0.0, 1.0,
+         1.0, 0.0, 0.0, 1.0
+    ];
+
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(colors), gl.STATIC_DRAW);
+    squareVertexColorBuffer.itemSize = 4,
+    squareVertexColorBuffer.numItems = 4;
+
 }
 //========================Scene Drawing============================
 
@@ -203,6 +231,18 @@ function drawScene(){
 	gl.drawArrays(gl.TRIANGLES, 0, pyramidVertexPositionBuffer.numItems);
 
     mvPopMatrix();
+
+    mat4.translate(mvMatrix, [3.0, 0.0, 0.0]);
+    gl.bindBuffer(gl.ARRAY_BUFFER, squareVertexPositionBuffer);
+    gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, squareVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
+
+    gl.bindBuffer(gl.ARRAY_BUFFER, squareVertexColorBuffer);
+    gl.vertexAttribPointer(shaderProgram.vertexColorAttribute, squareVertexColorBuffer.itemSize, gl.FLOAT,
+        false, 0, 0);
+    
+    setMatrixUniforms();
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, squareVertexPositionBuffer.numItems);
+
 }
 //==================Starting Point=================================
 var lastTime = 0;
