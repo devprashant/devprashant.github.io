@@ -88,7 +88,7 @@ function initShaders() {
     shaderProgram.vertexPositionAttribute = gl.getAttribLocation(shaderProgram, "aVertexPosition");
     gl.enableVertexAttribArray(shaderProgram.vertexPositionAttribute);
 
-    shaderProgram.pMatrixUniform = gl.getUniformLocation(shaderProgram, "uPMatrix")
+    shaderProgram.pMatrixUniform = gl.getUniformLocation(shaderProgram, "uPMatrix");
     shaderProgram.mvMatrixUniform = gl.getUniformLocation(shaderProgram, "uMVMatrix");
 }
 
@@ -100,19 +100,20 @@ function setMatrixUniforms() {
         gl.uniformMatrix4fv(shaderProgram.mvMatrixUniform, false, mvMatrix);
     }
 //=========================Buffers=================================
-var triangleVertexPositionBuffer;
+var recPathVertexPositionBuffer;
 
 function initBuffers(){
-	triangleVertexPositionBuffer = gl.createBuffer();
-	gl.bindBuffer(gl.ARRAY_BUFFER, triangleVertexPositionBuffer);
-	var vertices = [
-             0.0,  1.0,  0.0,
-            -1.0, -1.0,  0.0,
-             1.0, -1.0,  0.0
+    recPathVertexPositionBuffer = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, recPathVertexPositionBuffer);
+    var vertices = [
+        -4.0, -2.0, 0.0,
+         4.0, -2.0, 0.0,
+        -4.0, -1.4, 0.0,
+         4.0, -1.4, 0.0
     ];
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
-    triangleVertexPositionBuffer.itemSize = 3;
-    triangleVertexPositionBuffer.numItems = 3;
+    recPathVertexPositionBuffer.itemSize = 3;
+    recPathVertexPositionBuffer.numItems = 4;
 }
 //========================Scene Drawing============================
 
@@ -125,10 +126,10 @@ function drawScene(){
 	mat4.identity(mvMatrix);
 
 	mat4.translate(mvMatrix, [-1.5, 0.0, -7.0]);
-	gl.bindBuffer(gl.ARRAY_BUFFER, triangleVertexPositionBuffer);
-	gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, triangleVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
+	gl.bindBuffer(gl.ARRAY_BUFFER, recPathVertexPositionBuffer);
+	gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, recPathVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
 	setMatrixUniforms();
-	gl.drawArrays(gl.TRIANGLES, 0, triangleVertexPositionBuffer.numItems);
+	gl.drawArrays(gl.TRIANGLE_STRIP, 0, recPathVertexPositionBuffer.numItems);
 }
 //==================Starting Point=================================
 function webGLStart(){
@@ -145,5 +146,5 @@ function webGLStart(){
 </script>
 <body onload="webGLStart();">
 
-		<canvas id="lgla" style="border: none;" width="500" height="500"></canvas>
+		<canvas id="lgla" style="border: none;" width="1300" height="600"></canvas>
 </body>
