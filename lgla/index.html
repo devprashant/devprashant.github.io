@@ -101,6 +101,7 @@ function setMatrixUniforms() {
     }
 //=========================Buffers=================================
 var recPathVertexPositionBuffer;
+var recMotionVertexPositionBuffer;
 
 function initBuffers(){
     recPathVertexPositionBuffer = gl.createBuffer();
@@ -114,6 +115,18 @@ function initBuffers(){
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
     recPathVertexPositionBuffer.itemSize = 3;
     recPathVertexPositionBuffer.numItems = 4;
+
+    recMotionVertexPositionBuffer = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, recMotionVertexPositionBuffer);
+    vertices = [
+        -4.0, -2.2, 0.0,
+        -3.5, -2.2, 0.0,
+        -3.5, -1.3, 0.0,
+        -4.0, -1.3, 0.0
+    ];
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
+    recMotionVertexPositionBuffer.itemSize = 3;
+    recMotionVertexPositionBuffer.numItems = 4;
 }
 //========================Scene Drawing============================
 
@@ -130,6 +143,11 @@ function drawScene(){
 	gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, recPathVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
 	setMatrixUniforms();
 	gl.drawArrays(gl.TRIANGLE_STRIP, 0, recPathVertexPositionBuffer.numItems);
+
+    gl.bindBuffer(gl.ARRAY_BUFFER, recMotionVertexPositionBuffer);
+    gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, recMotionVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
+    setMatrixUniforms();
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, recMotionVertexPositionBuffer.numItems);
 }
 //==================Starting Point=================================
 function webGLStart(){
