@@ -2,19 +2,25 @@
 <script id="shader-fs" type="x-shader/x-fragment">
     precision mediump float;
 
+    varying vec4 vColor;
+
     void main(void) {
-        gl_FragColor = vec4(1.0, 1.0, 1.0, 1.0);
+        gl_FragColor = vColor;
     }
 </script>
 
 <script id="shader-vs" type="x-shader/x-vertex">
     attribute vec3 aVertexPosition;
+    attribute vec4 aVertexColor;
 
     uniform mat4 uMVMatrix;
     uniform mat4 uPMatrix;
 
+    varying vec4 vColor;
+
     void main(void) {
         gl_Position = uPMatrix * uMVMatrix * vec4(aVertexPosition, 1.0);
+        vColor = aVertexColor;
     }
 </script>
 
@@ -88,6 +94,9 @@ function initShaders() {
     shaderProgram.vertexPositionAttribute = gl.getAttribLocation(shaderProgram, "aVertexPosition");
     gl.enableVertexAttribArray(shaderProgram.vertexPositionAttribute);
 
+    shaderProgram.vertexColorAttribute = gl.getAttribLocation(shaderProgram, "aVertexColor");
+    gl.enableVertexAttribArray(shaderProgram.vertexColorAttribute);
+
     shaderProgram.pMatrixUniform = gl.getUniformLocation(shaderProgram, "uPMatrix");
     shaderProgram.mvMatrixUniform = gl.getUniformLocation(shaderProgram, "uMVMatrix");
 }
@@ -101,7 +110,9 @@ function setMatrixUniforms() {
     }
 //=========================Buffers=================================
 var recPathVertexPositionBuffer;
+var recPathVertexColorBuffer;
 var recMotionVertexPositionBuffer;
+var recMotionVertexColorBuffer;
 
 function initBuffers(){
     recPathVertexPositionBuffer = gl.createBuffer();
@@ -116,17 +127,37 @@ function initBuffers(){
     recPathVertexPositionBuffer.itemSize = 3;
     recPathVertexPositionBuffer.numItems = 4;
 
+    recPathVertexColorBuffer = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, recPathVertexColorBuffer);
+    var colors = [];
+    for (var i=0; i < 4; i++){
+        colors = colors.concat([0.5, 0.5, 1.0, 1.0]);
+    }
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(colors), gl.STATIC_DRAW);
+    recPathVertexColorBuffer.itemSize = 4;
+    recPathVertexColorBuffer.numItems = 4;
+
     recMotionVertexPositionBuffer = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, recMotionVertexPositionBuffer);
     vertices = [
-        -4.0, -2.2, 0.0,
-        -3.5, -2.2, 0.0,
-        -3.5, -1.3, 0.0,
-        -4.0, -1.3, 0.0
+        -4.0, -2.2, 1.0,
+        -3.5, -2.2, 1.0,
+        -3.5, -1.3, 1.0,
+        -4.0, -1.3, 1.0
     ];
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
     recMotionVertexPositionBuffer.itemSize = 3;
     recMotionVertexPositionBuffer.numItems = 4;
+
+    recMotionVertexColorBuffer = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, recMotionVertexColorBuffer);
+    colors = [];
+    for (var i=0; i < 4; i++){
+        colors = colors.concat([0.0, 1.0, 0.0, 1.0]);
+    }
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(colors), gl.STATIC_DRAW);
+    recMotionVertexColorBuffer.itemSize = 4;
+    recMotionVertexColorBuffer.numItems = 4;
 }
 //========================Scene Drawing============================
 
@@ -139,13 +170,23 @@ function drawScene(){
 	mat4.identity(mvMatrix);
 
 	mat4.translate(mvMatrix, [-1.5, 0.0, -7.0]);
+    //rec path vertices
 	gl.bindBuffer(gl.ARRAY_BUFFER, recPathVertexPositionBuffer);
 	gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, recPathVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
+    //rec path color
+    gl.bindBuffer(gl.ARRAY_BUFFER, recPathVertexColorBuffer);
+    gl.vertexAttribPointer(shaderProgram.vertexColorAttribute, recPathVertexColorBuffer.itemSize, gl.FLOAT, false, 0, 0);
+    //drawing rec path
 	setMatrixUniforms();
 	gl.drawArrays(gl.TRIANGLE_STRIP, 0, recPathVertexPositionBuffer.numItems);
 
+    // Moving rectangle vertices
     gl.bindBuffer(gl.ARRAY_BUFFER, recMotionVertexPositionBuffer);
     gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, recMotionVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
+    //moving rectangle color
+    gl.bindBuffer(gl.ARRAY_BUFFER, recMotionVertexColorBuffer);
+    gl.vertexAttribPointer(shaderProgram.vertexColorAttribute, recMotionVertexColorBuffer.itemSize, gl.FLOAT, false, 0, 0);
+    //drawing moving rectangle
     setMatrixUniforms();
     gl.drawArrays(gl.TRIANGLE_STRIP, 0, recMotionVertexPositionBuffer.numItems);
 }
