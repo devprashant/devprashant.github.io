@@ -108,6 +108,15 @@ function setMatrixUniforms() {
         gl.uniformMatrix4fv(shaderProgram.pMatrixUniform, false, pMatrix);
         gl.uniformMatrix4fv(shaderProgram.mvMatrixUniform, false, mvMatrix);
     }
+
+//=========================Keymappings=============================
+var currentlyPressedKeys = {};
+
+function handleKeys(){
+    if (currentlyPressedKeys[37]){
+
+    }
+}
 //=========================Buffers=================================
 var recPathVertexPositionBuffer;
 var recPathVertexColorBuffer;
@@ -161,7 +170,7 @@ function initBuffers(){
 }
 //========================Scene Drawing============================
 
-
+var xSlider = 0;
 function drawScene(){
 	gl.viewport(0, 0, gl.viewportWidth, gl.viewportHeight);
 	gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
@@ -180,6 +189,8 @@ function drawScene(){
 	setMatrixUniforms();
 	gl.drawArrays(gl.TRIANGLE_STRIP, 0, recPathVertexPositionBuffer.numItems);
 
+    mat4.translate(mvMatrix, [xSlider, 0.0, 0.0]);
+    console.log("xSlider = ", xSlider);
     // Moving rectangle vertices
     gl.bindBuffer(gl.ARRAY_BUFFER, recMotionVertexPositionBuffer);
     gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, recMotionVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
@@ -191,6 +202,18 @@ function drawScene(){
     gl.drawArrays(gl.TRIANGLE_STRIP, 0, recMotionVertexPositionBuffer.numItems);
 }
 //==================Starting Point=================================
+function animate(){
+    if (xSlider <= 7.1){
+        xSlider += 0.1;
+    }
+      
+}
+function tick(){
+    requestAnimationFrame(tick);
+    handleKeys();
+    drawScene();
+    animate();
+}
 function webGLStart(){
 	var canvas = document.getElementById('lgla');
 	initGL(canvas);
@@ -200,7 +223,7 @@ function webGLStart(){
 	gl.clearColor(0.0, 0.0, 0.0, 1.0);
 	//gl.enable(gl.DEPTH_TEST);
 
-	drawScene();
+	tick();
 }
 </script>
 <body onload="webGLStart();">
