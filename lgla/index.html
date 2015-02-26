@@ -218,9 +218,12 @@ function drawScene(){
 //==================Starting Point=================================
 function animate(){
     if (xSlider <= 7.1){
-        xSlider = mSlider;
+        if (xSlider >= 0.0)
+            xSlider = mSlider;
+        else 
+            xSlider = 0.0;
     }
-    else
+    else 
         xSlider = 7.1;
 }
 function tick(){
