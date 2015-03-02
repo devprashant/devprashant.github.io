@@ -224,9 +224,17 @@ function initBuffers(){
 
     roomOccupiedVertexColorBuffer = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, roomOccupiedVertexColorBuffer);
-    var colors = [];
-    for (var i=0; i < 4; i++){
-        colors = colors.concat([0.4, 0.3, 0.1, 1.0]);
+    colors = [];
+    if (status == 1){
+        for (var i=0; i < 4; i++){
+            colors = colors.concat([0.4, 0.3, 0.1, 1.0]);
+        }
+        console.log("heha");
+    } else {
+        for (var i=0; i < 4; i++){
+        colors = colors.concat([0.3, 0.5, 0.4, 1.0]);
+        }
+        console.log("hahi");
     }
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(colors), gl.STATIC_DRAW);
     roomOccupiedVertexColorBuffer.itemSize = 4;
@@ -280,6 +288,16 @@ function initBuffers(){
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(colors), gl.STATIC_DRAW);
     recMotionVertexColorBuffer.itemSize = 4;
     recMotionVertexColorBuffer.numItems = 4;
+}
+//========================Toggle==================================
+var status = 1;
+function toggle() {
+    if (status == 0){
+        status = 1; 
+    } else {
+        status = 0;
+    }
+    console.log("status: " + status);
 }
 //========================Scene Drawing============================
 
@@ -335,7 +353,7 @@ function drawScene(){
     gl.drawArrays(gl.TRIANGLE_STRIP, 0, room4VertexPositionBuffer.numItems);
 
     mat4.translate(mvMatrix, [xSlider, 0.0, 0.0]);
-    console.log("xSlider = ", xSlider);
+    //console.log("xSlider = ", xSlider);
     // Moving rectangle vertices
     gl.bindBuffer(gl.ARRAY_BUFFER, recMotionVertexPositionBuffer);
     gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, recMotionVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
@@ -360,6 +378,7 @@ function animate(){
 function tick(){
     requestAnimationFrame(tick);
     handleKeys();
+    
     drawScene();
     animate();
 }
@@ -367,7 +386,8 @@ function webGLStart(){
 	var canvas = document.getElementById('lgla');
 	initGL(canvas);
 	initShaders();
-	initBuffers();
+    toggle();
+    initBuffers();
 
 	gl.clearColor(0.0, 0.0, 0.0, 1.0);
 	//gl.enable(gl.DEPTH_TEST);
@@ -379,6 +399,6 @@ function webGLStart(){
 }
 </script>
 <body onload="webGLStart();">
-
+        <button type="button" onclick="webGLStart();">toggle</button>
 		<canvas id="lgla" style="border: none;" width="1300" height="600"></canvas>
 </body>
