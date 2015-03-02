@@ -225,17 +225,10 @@ function initBuffers(){
     roomOccupiedVertexColorBuffer = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, roomOccupiedVertexColorBuffer);
     colors = [];
-    if (status == 1){
         for (var i=0; i < 4; i++){
             colors = colors.concat([0.4, 0.3, 0.1, 1.0]);
         }
-        console.log("heha");
-    } else {
-        for (var i=0; i < 4; i++){
-        colors = colors.concat([0.3, 0.5, 0.4, 1.0]);
-        }
-        console.log("hahi");
-    }
+     
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(colors), gl.STATIC_DRAW);
     roomOccupiedVertexColorBuffer.itemSize = 4;
     roomOccupiedVertexColorBuffer.numItems = 4;
@@ -339,8 +332,14 @@ function drawScene(){
 //drawing room3
     gl.bindBuffer(gl.ARRAY_BUFFER, room3VertexPositionBuffer);
     gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, room3VertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
+    //check occupency of room
+    if (status == 1){
     gl.bindBuffer(gl.ARRAY_BUFFER, roomOccupiedVertexColorBuffer);
     gl.vertexAttribPointer(shaderProgram.vertexColorAttribute, roomOccupiedVertexColorBuffer.itemSize, gl.FLOAT, false, 0, 0);
+    } else {
+    gl.bindBuffer(gl.ARRAY_BUFFER, roomVertexColorBuffer);
+    gl.vertexAttribPointer(shaderProgram.vertexColorAttribute, roomVertexColorBuffer.itemSize, gl.FLOAT, false, 0, 0);
+    }
     setMatrixUniforms();
     gl.drawArrays(gl.TRIANGLE_STRIP, 0, room3VertexPositionBuffer.numItems);
 
