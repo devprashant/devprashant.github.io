@@ -1,3 +1,47 @@
+<style>
+body {
+    background-color: black;
+}
+.room {
+    color: red;
+    position: absolute;
+    font-size: 22;
+    font-family: 'Verdana';
+}
+#r0{
+    padding-top: 236px;
+    padding-left: 270px;
+}
+#r1{
+    padding-top: 312px;
+    padding-left: 429px;
+}
+#r2{
+    padding-top: 282px;
+    padding-left: 270px;
+}
+#r3{
+    padding-top: 394px;
+    padding-left: 270px;
+}
+#r4{
+    padding-top: 312px;
+    padding-left: 600px;
+}
+#r5{
+    padding-top: 434px;
+    padding-left: 427px;
+}
+#r6{
+    padding-top: 434px;
+    padding-left: 521px;
+}
+#r7{
+    padding-top: 361px;
+    padding-left: 270px;
+}
+
+</style>
 <script type="text/javascript" src="gl-matrix-min.js"></script>
 <script id="shader-fs" type="x-shader/x-fragment">
     precision mediump float;
@@ -131,6 +175,10 @@ function handleKeys(){
 
 }
 //=========================Buffers=================================
+var roomaVertexPositionBuffer;
+var roomaVertexColorBuffer;
+var roombVertexPositionBuffer;
+var roombVertexColorBuffer;
 var room0VertexPositionBuffer;
 var room0VertexColorBuffer;
 var room1VertexPositionBuffer;
@@ -160,8 +208,34 @@ function  createRoomBuffer(vertices){
 }
 
 function initBuffers(){
-    //vertices for room 0
+    //vertices for room a
     var vertices = [
+        -5.6, 2.4, 0.0,
+        -4.6, 2.4, 0.0,
+        -5.6, 0.7, 0.0,
+        -4.6, 0.7, 0.0 
+    ];
+    roomaVertexPositionBuffer = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, roomaVertexPositionBuffer);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
+    roomaVertexPositionBuffer.itemSize = 3;
+    roomaVertexPositionBuffer.numItems = 4;
+
+    //vertices for room b
+    vertices = [
+        -5.6, 2.4, 0.0,
+        -4.6, 2.4, 0.0,
+        -5.6, 0.7, 0.0,
+        -4.6, 0.7, 0.0 
+    ];
+    roombVertexPositionBuffer = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, roombVertexPositionBuffer);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
+    roombVertexPositionBuffer.itemSize = 3;
+    roombVertexPositionBuffer.numItems = 4;
+
+    //vertices for room 0
+    vertices = [
         -5.6, 2.4, 0.0,
         -4.6, 2.4, 0.0,
         -5.6, 0.7, 0.0,
@@ -175,8 +249,8 @@ function initBuffers(){
 
     //vertices for room 2
     vertices = [
-        -5.6, 0.7, 0.0,
-        -4.6, 0.7, 0.0,
+        -5.6, 0.6, 0.0,
+        -4.6, 0.6, 0.0,
         -5.6,-0.2, 0.0,
         -4.6,-0.2, 0.0
     ];
@@ -318,6 +392,8 @@ function drawScene(){
 //drawing room0
     gl.bindBuffer(gl.ARRAY_BUFFER, room0VertexPositionBuffer);
     gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, room0VertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
+    gl.bindBuffer(gl.ARRAY_BUFFER, roomVertexColorBuffer);
+    gl.vertexAttribPointer(shaderProgram.vertexColorAttribute, roomVertexColorBuffer.itemSize, gl.FLOAT, false, 0, 0);
     setMatrixUniforms();
     gl.drawArrays(gl.TRIANGLE_STRIP, 0, room0VertexPositionBuffer.numItems);
 
@@ -397,7 +473,60 @@ function webGLStart(){
 	tick();
 }
 </script>
+<script type="text/javascript">
+    
+    function floor1(){
+        document.getElementById('ra').innerHTML = "A-103";
+        document.getElementById('rb').innerHTML = "A-106";
+        document.getElementById('r0').innerHTML = "A-102";
+        document.getElementById('r1').innerHTML = "A-107";
+        document.getElementById('r2').innerHTML = "A-101";
+        document.getElementById('r3').innerHTML = "A-108";
+        document.getElementById('r4').innerHTML = "A-112";
+        document.getElementById('r5').innerHTML = "       A-109";
+        document.getElementById('r6').innerHTML = "";
+        document.getElementById('r7').innerHTML = "";
+    }
+    function floor2(){
+        document.getElementById('ra').innerHTML = "A-203";
+        document.getElementById('rb').innerHTML = "A-205";
+        document.getElementById('r0').innerHTML = "A-202";
+        document.getElementById('r1').innerHTML = "A-206";
+        document.getElementById('r2').innerHTML = "A-201";
+        document.getElementById('r3').innerHTML = "A-208";
+        document.getElementById('r4').innerHTML = "A-214";
+        document.getElementById('r5').innerHTML = "A-211";
+        document.getElementById('r6').innerHTML = "A-212";
+        document.getElementById('r7').innerHTML = "A-207";
+    }
+    function floor3(){
+        document.getElementById('ra').innerHTML = "A-303";
+        document.getElementById('rb').innerHTML = "";
+        document.getElementById('r0').innerHTML = "A-302";
+        document.getElementById('r1').innerHTML = "A-306";
+        document.getElementById('r2').innerHTML = "A-301";
+        document.getElementById('r3').innerHTML = "A-308";
+        document.getElementById('r4').innerHTML = "A-312";
+        document.getElementById('r5').innerHTML = "A-309";
+        document.getElementById('r6').innerHTML = "";
+        document.getElementById('r7').innerHTML = "A-307";
+    }
+
+</script>
 <body onload="webGLStart();">
         <button type="button" onclick="webGLStart();">toggle</button>
+        <button type="button" onclick="floor1();">Floor 1</button>
+        <button type="button" onclick="floor2();">Floor 2</button>
+        <button type="button" onclick="floor3();">Floor 3</button>
+        <div id="ra" class="room">ra</div>
+        <div id="rb" class="room">rb</div>
+        <div id="r0" class="room">r0</div>
+        <div id="r1" class="room">r1</div>
+        <div id="r2" class="room">r2</div>
+        <div id="r3" class="room">r3</div>
+        <div id="r4" class="room">r4</div>
+        <div id="r5" class="room">r5</div>
+        <div id="r6" class="room">r6</div>
+        <div id="r7" class="room">r7</div>
 		<canvas id="lgla" style="border: none;" width="1300" height="600"></canvas>
 </body>
