@@ -1,6 +1,6 @@
 <style>
 body {
-    background-color: black;
+    background-color: ;
 }
 .room {
     color: yellow;
@@ -184,26 +184,8 @@ function handleKeys(){
 
 }
 //=========================Buffers=================================
-var roomaVertexPositionBuffer;
-var roomaVertexColorBuffer;
-var roombVertexPositionBuffer;
-var roombVertexColorBuffer;
-var room0VertexPositionBuffer;
-var room0VertexColorBuffer;
-var room1VertexPositionBuffer;
-var room1VertexColorBuffer;
-var room2VertexPositionBuffer;
-var room2VertexColorBuffer; 
-var room3VertexPositionBuffer;
-var room3VertexColorBuffer;
-var room4VertexPositionBuffer;
-var room4VertexColorBuffer;
-var room5VertexPositionBuffer;
-var room5VertexColorBuffer;
-var room6VertexPositionBuffer;
-var room6VertexColorBuffer;
-var room7VertexPositionBuffer;
-var room7VertexColorBuffer;
+
+var roomVertexPositionBuffer = [];
 var roomVertexColorBuffer;
 var roomOccupiedVertexColorBuffer;
 
@@ -230,11 +212,11 @@ function initBuffers(){
         -4.5, 2.4, 0.0,
         -4.5, 1.8, 0.0 
     ];
-    roomaVertexPositionBuffer = gl.createBuffer();
-    gl.bindBuffer(gl.ARRAY_BUFFER, roomaVertexPositionBuffer);
+    roomVertexPositionBuffer[8] = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, roomVertexPositionBuffer[8]);
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
-    roomaVertexPositionBuffer.itemSize = 3;
-    roomaVertexPositionBuffer.numItems = 4;
+    roomVertexPositionBuffer[8].itemSize = 3;
+    roomVertexPositionBuffer[8].numItems = 4;
 
     //vertices for room b
     vertices = [
@@ -243,11 +225,11 @@ function initBuffers(){
         -3.0, 1.3, 0.0,
         -3.0,-0.2, 0.0
     ];
-    roombVertexPositionBuffer = gl.createBuffer();
-    gl.bindBuffer(gl.ARRAY_BUFFER, roombVertexPositionBuffer);
+    roomVertexPositionBuffer[9] = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, roomVertexPositionBuffer[9]);
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
-    roombVertexPositionBuffer.itemSize = 3;
-    roombVertexPositionBuffer.numItems = 4;
+    roomVertexPositionBuffer[9].itemSize = 3;
+    roomVertexPositionBuffer[9].numItems = 4;
 
     //vertices for room 0
     vertices = [
@@ -256,11 +238,11 @@ function initBuffers(){
         -5.6, 0.7, 0.0,
         -4.6, 0.7, 0.0 
     ];
-    room0VertexPositionBuffer = gl.createBuffer();
-    gl.bindBuffer(gl.ARRAY_BUFFER, room0VertexPositionBuffer);
+    roomVertexPositionBuffer[0] = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, roomVertexPositionBuffer[0]);
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
-    room0VertexPositionBuffer.itemSize = 3;
-    room0VertexPositionBuffer.numItems = 4;
+    roomVertexPositionBuffer[0].itemSize = 3;
+    roomVertexPositionBuffer[0].numItems = 4;
 
     //vertices for room 1
     vertices = [
@@ -269,11 +251,11 @@ function initBuffers(){
         -4.0,  0.7, 0.0,
         -4.0, -0.2, 0.0
     ];
-    room1VertexPositionBuffer = gl.createBuffer();
-    gl.bindBuffer(gl.ARRAY_BUFFER, room1VertexPositionBuffer);
+    roomVertexPositionBuffer[1] = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, roomVertexPositionBuffer[1]);
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
-    room1VertexPositionBuffer.itemSize = 3;
-    room1VertexPositionBuffer.numItems = 4;
+    roomVertexPositionBuffer[1].itemSize = 3;
+    roomVertexPositionBuffer[1].numItems = 4;
 
     //vertices for room 2
     vertices = [
@@ -282,11 +264,11 @@ function initBuffers(){
         -5.6,-0.2, 0.0,
         -4.6,-0.2, 0.0
     ];
-    room2VertexPositionBuffer = gl.createBuffer();
-    gl.bindBuffer(gl.ARRAY_BUFFER, room2VertexPositionBuffer);
+    roomVertexPositionBuffer[2] = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, roomVertexPositionBuffer[2]);
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
-    room2VertexPositionBuffer.itemSize = 3;
-    room2VertexPositionBuffer.numItems = 4;
+    roomVertexPositionBuffer[2].itemSize = 3;
+    roomVertexPositionBuffer[2].numItems = 4;
 
     //vertices for room 3
     vertices = [
@@ -295,11 +277,11 @@ function initBuffers(){
         -5.6, -2.9, 0.0,
         -4.6, -2.9, 0.0
     ];
-    room3VertexPositionBuffer = gl.createBuffer();
-    gl.bindBuffer(gl.ARRAY_BUFFER, room3VertexPositionBuffer);
+    roomVertexPositionBuffer[3] = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, roomVertexPositionBuffer[3]);
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
-    room3VertexPositionBuffer.itemSize = 3;
-    room3VertexPositionBuffer.numItems = 4;
+    roomVertexPositionBuffer[3].itemSize = 3;
+    roomVertexPositionBuffer[3].numItems = 4;
 
     //vertices for room 4
     vertices = [
@@ -308,11 +290,11 @@ function initBuffers(){
             -0.9, -0.9, 0.0,
              3.0, -0.9, 0.0
     ];
-    room4VertexPositionBuffer = gl.createBuffer();
-    gl.bindBuffer(gl.ARRAY_BUFFER, room4VertexPositionBuffer);
+    roomVertexPositionBuffer[4] = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, roomVertexPositionBuffer[4]);
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
-    room4VertexPositionBuffer.itemSize = 3;
-    room4VertexPositionBuffer.numItems = 4;
+    roomVertexPositionBuffer[4].itemSize = 3;
+    roomVertexPositionBuffer[4].numItems = 4;
 
     //vertices for room 5
     vertices = [
@@ -321,11 +303,11 @@ function initBuffers(){
             -4.0, -2.0, 0.0,
             -4.0, -2.9, 0.0
     ];
-    room5VertexPositionBuffer = gl.createBuffer();
-    gl.bindBuffer(gl.ARRAY_BUFFER, room5VertexPositionBuffer);
+    roomVertexPositionBuffer[5] = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, roomVertexPositionBuffer[5]);
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
-    room5VertexPositionBuffer.itemSize = 3;
-    room5VertexPositionBuffer.numItems = 4;
+    roomVertexPositionBuffer[5].itemSize = 3;
+    roomVertexPositionBuffer[5].numItems = 4;
 
     //vertices for room 6
     vertices = [
@@ -334,11 +316,11 @@ function initBuffers(){
            -1.3, -2.0, 0.0,
            -1.3, -2.9, 0.0
     ];
-    room6VertexPositionBuffer = gl.createBuffer();
-    gl.bindBuffer(gl.ARRAY_BUFFER, room6VertexPositionBuffer);
+    roomVertexPositionBuffer[6] = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, roomVertexPositionBuffer[6]);
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
-    room6VertexPositionBuffer.itemSize = 3;
-    room6VertexPositionBuffer.numItems = 4;
+    roomVertexPositionBuffer[6].itemSize = 3;
+    roomVertexPositionBuffer[6].numItems = 4;
 
     //vertices for room 7
     vertices = [
@@ -347,11 +329,113 @@ function initBuffers(){
             -5.6, -0.8, 0.0,
             -5.6, -1.93, 0.0
     ];
-    room7VertexPositionBuffer = gl.createBuffer();
-    gl.bindBuffer(gl.ARRAY_BUFFER, room7VertexPositionBuffer);
+    roomVertexPositionBuffer[7] = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, roomVertexPositionBuffer[7]);
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
-    room7VertexPositionBuffer.itemSize = 3;
-    room7VertexPositionBuffer.numItems = 4;
+    roomVertexPositionBuffer[7].itemSize = 3;
+    roomVertexPositionBuffer[7].numItems = 4;
+
+    //vertices for room 10
+    vertices = [
+            -6.2, -5.9, 0.0,
+            -4.6, -5.9, 0.0,
+            -6.2, -6.7, 0.0,
+            -4.6, -6.7, 0.0
+    ];
+    roomVertexPositionBuffer[10] = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, roomVertexPositionBuffer[10]);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
+    roomVertexPositionBuffer[10].itemSize = 3;
+    roomVertexPositionBuffer[10].numItems = 4;
+
+    //vertices for room 11
+    vertices = [
+            
+    ];
+    roomVertexPositionBuffer[11] = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, roomVertexPositionBuffer[11]);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
+    roomVertexPositionBuffer[11].itemSize = 3;
+    roomVertexPositionBuffer[11].numItems = 4;
+
+    //vertices for room 12
+    vertices = [
+            
+    ];
+    roomVertexPositionBuffer[12] = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, roomVertexPositionBuffer[12]);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
+    roomVertexPositionBuffer[12].itemSize = 3;
+    roomVertexPositionBuffer[12].numItems = 4;
+
+    //vertices for room 13
+    vertices = [
+            
+    ];
+    roomVertexPositionBuffer[13] = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, roomVertexPositionBuffer[13]);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
+    roomVertexPositionBuffer[13].itemSize = 3;
+    roomVertexPositionBuffer[13].numItems = 4;
+
+    //vertices for room 14
+    vertices = [
+            
+    ];
+    roomVertexPositionBuffer[14] = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, roomVertexPositionBuffer[14]);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
+    roomVertexPositionBuffer[14].itemSize = 3;
+    roomVertexPositionBuffer[14].numItems = 4;
+
+    //vertices for room 15
+    vertices = [
+            3.2, -2.7, 0.0,
+            4.0, -2.7, 0.0,
+            3.2, -4.0, 0.0,
+            4.0, -4.0, 0.0
+    ];
+    roomVertexPositionBuffer[15] = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, roomVertexPositionBuffer[15]);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
+    roomVertexPositionBuffer[15].itemSize = 3;
+    roomVertexPositionBuffer[15].numItems = 4;
+
+    //vertices for room 16
+    vertices = [
+            4.6, -4.4, 0.0,
+            5.4, -4.4, 0.0,
+            4.6, -5.3, 0.0,
+            5.4, -5.3, 0.0
+    ];
+    roomVertexPositionBuffer[16] = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, roomVertexPositionBuffer[16]);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
+    roomVertexPositionBuffer[16].itemSize = 3;
+    roomVertexPositionBuffer[16].numItems = 4;
+
+    //vertices for room 17
+    vertices = [
+            4.6, -3.0, 0.0,
+            5.4, -3.0, 0.0,
+            4.6, -4.37, 0.0,
+            5.4, -4.37, 0.0
+    ];
+    roomVertexPositionBuffer[17] = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, roomVertexPositionBuffer[17]);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
+    roomVertexPositionBuffer[17].itemSize = 3;
+    roomVertexPositionBuffer[17].numItems = 4;
+
+    //vertices for room 18
+    vertices = [
+            
+    ];
+    roomVertexPositionBuffer[18] = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, roomVertexPositionBuffer[18]);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
+    roomVertexPositionBuffer[18].itemSize = 3;
+    roomVertexPositionBuffer[18].numItems = 4;
     
     roomVertexColorBuffer = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, roomVertexColorBuffer);
@@ -395,22 +479,33 @@ function initBuffers(){
         //path f2 --- vertex shared
         -4.0, -1.4, 0.0,
          4.0, -2.0, 0.0,
-         4.0, -1.4, 0.0
+         4.0, -1.4, 0.0,
+         //path f3-------
+         4.6, -1.4, 0.0,
+         4.0, -5.3, 0.0,
+         4.6, -5.3, 0.0,
+         //path f4-------
+         5.4, -5.3, 0.0,
+         5.4, -5.9, 0.0,
+        -5.2, -5.3, 0.0,
+        -5.2, -5.9, 0.0
+        
+
          
     ];
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
     recPathVertexPositionBuffer.itemSize = 3;
-    recPathVertexPositionBuffer.numItems = 16;
+    recPathVertexPositionBuffer.numItems = 23;
 
     recPathVertexColorBuffer = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, recPathVertexColorBuffer);
     colors = [];
-    for (var i=0; i < 16; i++){
+    for (var i=0; i < 23; i++){
         colors = colors.concat([0.5, 0.5, 1.0, 1.0]);
     }
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(colors), gl.STATIC_DRAW);
     recPathVertexColorBuffer.itemSize = 4;
-    recPathVertexColorBuffer.numItems = 16;
+    recPathVertexColorBuffer.numItems = 23;
 
     recMotionVertexPositionBuffer = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, recMotionVertexPositionBuffer);
@@ -468,24 +563,24 @@ function drawScene(){
 
 
 //drawing rooma
-    gl.bindBuffer(gl.ARRAY_BUFFER, roomaVertexPositionBuffer);
-    gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, roomaVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
+    gl.bindBuffer(gl.ARRAY_BUFFER, roomVertexPositionBuffer[8]);
+    gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, roomVertexPositionBuffer[8].itemSize, gl.FLOAT, false, 0, 0);
     gl.bindBuffer(gl.ARRAY_BUFFER, roomVertexColorBuffer);
     gl.vertexAttribPointer(shaderProgram.vertexColorAttribute, roomVertexColorBuffer.itemSize, gl.FLOAT, false, 0, 0);
     setMatrixUniforms();
-    gl.drawArrays(gl.TRIANGLE_STRIP, 0, roomaVertexPositionBuffer.numItems);
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, roomVertexPositionBuffer[8].numItems);
 
 //drawing roomb
-    gl.bindBuffer(gl.ARRAY_BUFFER, roombVertexPositionBuffer);
-    gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, roombVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
+    gl.bindBuffer(gl.ARRAY_BUFFER, roomVertexPositionBuffer[9]);
+    gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, roomVertexPositionBuffer[9].itemSize, gl.FLOAT, false, 0, 0);
     gl.bindBuffer(gl.ARRAY_BUFFER, roomVertexColorBuffer);
     gl.vertexAttribPointer(shaderProgram.vertexColorAttribute, roomVertexColorBuffer.itemSize, gl.FLOAT, false, 0, 0);
     setMatrixUniforms();
-    gl.drawArrays(gl.TRIANGLE_STRIP, 0, roombVertexPositionBuffer.numItems);
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, roomVertexPositionBuffer[9].numItems);
 
 //drawing room0
-    gl.bindBuffer(gl.ARRAY_BUFFER, room0VertexPositionBuffer);
-    gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, room0VertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
+    gl.bindBuffer(gl.ARRAY_BUFFER, roomVertexPositionBuffer[0]);
+    gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, roomVertexPositionBuffer[0].itemSize, gl.FLOAT, false, 0, 0);
    //check occupency of room
     if (status == 1){
     gl.bindBuffer(gl.ARRAY_BUFFER, roomOccupiedVertexColorBuffer);
@@ -495,18 +590,18 @@ function drawScene(){
     gl.vertexAttribPointer(shaderProgram.vertexColorAttribute, roomVertexColorBuffer.itemSize, gl.FLOAT, false, 0, 0);
     }
     setMatrixUniforms();
-    gl.drawArrays(gl.TRIANGLE_STRIP, 0, room0VertexPositionBuffer.numItems);
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, roomVertexPositionBuffer[0].numItems);
 
 //drawing room1
-    gl.bindBuffer(gl.ARRAY_BUFFER, room1VertexPositionBuffer);
-    gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, room1VertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
+    gl.bindBuffer(gl.ARRAY_BUFFER, roomVertexPositionBuffer[1]);
+    gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, roomVertexPositionBuffer[1].itemSize, gl.FLOAT, false, 0, 0);
     gl.bindBuffer(gl.ARRAY_BUFFER, roomVertexColorBuffer);
     gl.vertexAttribPointer(shaderProgram.vertexColorAttribute, roomVertexColorBuffer.itemSize, gl.FLOAT, false, 0, 0);
     setMatrixUniforms();
-    gl.drawArrays(gl.TRIANGLE_STRIP, 0, room1VertexPositionBuffer.numItems);
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, roomVertexPositionBuffer[1].numItems);
 //drawing room2
-    gl.bindBuffer(gl.ARRAY_BUFFER, room2VertexPositionBuffer);
-    gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, room2VertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
+    gl.bindBuffer(gl.ARRAY_BUFFER, roomVertexPositionBuffer[2]);
+    gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, roomVertexPositionBuffer[2].itemSize, gl.FLOAT, false, 0, 0);
     //check occupency of room
     if (status == 1){
     gl.bindBuffer(gl.ARRAY_BUFFER, roomOccupiedVertexColorBuffer);
@@ -516,11 +611,11 @@ function drawScene(){
     gl.vertexAttribPointer(shaderProgram.vertexColorAttribute, roomVertexColorBuffer.itemSize, gl.FLOAT, false, 0, 0);
     }
     setMatrixUniforms();
-    gl.drawArrays(gl.TRIANGLE_STRIP, 0, room2VertexPositionBuffer.numItems);
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, roomVertexPositionBuffer[2].numItems);
 
 //drawing room3
-    gl.bindBuffer(gl.ARRAY_BUFFER, room3VertexPositionBuffer);
-    gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, room3VertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
+    gl.bindBuffer(gl.ARRAY_BUFFER, roomVertexPositionBuffer[3]);
+    gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, roomVertexPositionBuffer[3].itemSize, gl.FLOAT, false, 0, 0);
     //check occupency of room
     if (status == 1){
     gl.bindBuffer(gl.ARRAY_BUFFER, roomOccupiedVertexColorBuffer);
@@ -530,39 +625,71 @@ function drawScene(){
     gl.vertexAttribPointer(shaderProgram.vertexColorAttribute, roomVertexColorBuffer.itemSize, gl.FLOAT, false, 0, 0);
     }
     setMatrixUniforms();
-    gl.drawArrays(gl.TRIANGLE_STRIP, 0, room3VertexPositionBuffer.numItems);
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, roomVertexPositionBuffer[3].numItems);
 
 //drawing room4
-    gl.bindBuffer(gl.ARRAY_BUFFER, room4VertexPositionBuffer);
-    gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, room4VertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
+    gl.bindBuffer(gl.ARRAY_BUFFER, roomVertexPositionBuffer[4]);
+    gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, roomVertexPositionBuffer[4].itemSize, gl.FLOAT, false, 0, 0);
     gl.bindBuffer(gl.ARRAY_BUFFER, roomVertexColorBuffer);
     gl.vertexAttribPointer(shaderProgram.vertexColorAttribute, roomVertexColorBuffer.itemSize, gl.FLOAT, false, 0, 0);
     setMatrixUniforms();
-    gl.drawArrays(gl.TRIANGLE_STRIP, 0, room4VertexPositionBuffer.numItems);
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, roomVertexPositionBuffer[4].numItems);
 
 //drawing room5
-    gl.bindBuffer(gl.ARRAY_BUFFER, room5VertexPositionBuffer);
-    gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, room5VertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
+    gl.bindBuffer(gl.ARRAY_BUFFER, roomVertexPositionBuffer[5]);
+    gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, roomVertexPositionBuffer[5].itemSize, gl.FLOAT, false, 0, 0);
     gl.bindBuffer(gl.ARRAY_BUFFER, roomVertexColorBuffer);
     gl.vertexAttribPointer(shaderProgram.vertexColorAttribute, roomVertexColorBuffer.itemSize, gl.FLOAT, false, 0, 0);
     setMatrixUniforms();
-    gl.drawArrays(gl.TRIANGLE_STRIP, 0, room5VertexPositionBuffer.numItems);
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, roomVertexPositionBuffer[5].numItems);
 
 //drawing room6
-    gl.bindBuffer(gl.ARRAY_BUFFER, room6VertexPositionBuffer);
-    gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, room6VertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
+    gl.bindBuffer(gl.ARRAY_BUFFER, roomVertexPositionBuffer[6]);
+    gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, roomVertexPositionBuffer[6].itemSize, gl.FLOAT, false, 0, 0);
     gl.bindBuffer(gl.ARRAY_BUFFER, roomVertexColorBuffer);
     gl.vertexAttribPointer(shaderProgram.vertexColorAttribute, roomVertexColorBuffer.itemSize, gl.FLOAT, false, 0, 0);
     setMatrixUniforms();
-    gl.drawArrays(gl.TRIANGLE_STRIP, 0, room6VertexPositionBuffer.numItems);
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, roomVertexPositionBuffer[6].numItems);
 
 //drawing room7
-    gl.bindBuffer(gl.ARRAY_BUFFER, room7VertexPositionBuffer);
-    gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, room7VertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
+    gl.bindBuffer(gl.ARRAY_BUFFER, roomVertexPositionBuffer[7]);
+    gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, roomVertexPositionBuffer[7].itemSize, gl.FLOAT, false, 0, 0);
     gl.bindBuffer(gl.ARRAY_BUFFER, roomVertexColorBuffer);
     gl.vertexAttribPointer(shaderProgram.vertexColorAttribute, roomVertexColorBuffer.itemSize, gl.FLOAT, false, 0, 0);
     setMatrixUniforms();
-    gl.drawArrays(gl.TRIANGLE_STRIP, 0, room7VertexPositionBuffer.numItems);
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, roomVertexPositionBuffer[7].numItems);
+
+//drawing room10
+    gl.bindBuffer(gl.ARRAY_BUFFER, roomVertexPositionBuffer[10]);
+    gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, roomVertexPositionBuffer[10].itemSize, gl.FLOAT, false, 0, 0);
+    gl.bindBuffer(gl.ARRAY_BUFFER, roomVertexColorBuffer);
+    gl.vertexAttribPointer(shaderProgram.vertexColorAttribute, roomVertexColorBuffer.itemSize, gl.FLOAT, false, 0, 0);
+    setMatrixUniforms();
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, roomVertexPositionBuffer[10].numItems);
+
+//drawing room15
+    gl.bindBuffer(gl.ARRAY_BUFFER, roomVertexPositionBuffer[15]);
+    gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, roomVertexPositionBuffer[15].itemSize, gl.FLOAT, false, 0, 0);
+    gl.bindBuffer(gl.ARRAY_BUFFER, roomVertexColorBuffer);
+    gl.vertexAttribPointer(shaderProgram.vertexColorAttribute, roomVertexColorBuffer.itemSize, gl.FLOAT, false, 0, 0);
+    setMatrixUniforms();
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, roomVertexPositionBuffer[15].numItems);
+
+//drawing room16
+    gl.bindBuffer(gl.ARRAY_BUFFER, roomVertexPositionBuffer[16]);
+    gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, roomVertexPositionBuffer[16].itemSize, gl.FLOAT, false, 0, 0);
+    gl.bindBuffer(gl.ARRAY_BUFFER, roomVertexColorBuffer);
+    gl.vertexAttribPointer(shaderProgram.vertexColorAttribute, roomVertexColorBuffer.itemSize, gl.FLOAT, false, 0, 0);
+    setMatrixUniforms();
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, roomVertexPositionBuffer[16].numItems);
+
+//drawing room17
+    gl.bindBuffer(gl.ARRAY_BUFFER, roomVertexPositionBuffer[17]);
+    gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, roomVertexPositionBuffer[17].itemSize, gl.FLOAT, false, 0, 0);
+    gl.bindBuffer(gl.ARRAY_BUFFER, roomVertexColorBuffer);
+    gl.vertexAttribPointer(shaderProgram.vertexColorAttribute, roomVertexColorBuffer.itemSize, gl.FLOAT, false, 0, 0);
+    setMatrixUniforms();
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, roomVertexPositionBuffer[17].numItems);
 
     mat4.translate(mvMatrix, [xSlider, 0.0, 0.0]);
     //console.log("xSlider = ", xSlider);
@@ -647,6 +774,18 @@ function webGLStart(){
         document.getElementById('r5').innerHTML = "A-309";
         document.getElementById('r6').innerHTML = "";
         document.getElementById('r7').innerHTML = "A-307";
+    }
+
+</script>
+<script type="text/javascript">
+var d = new Date();
+    function member(who){
+        switch(who){
+
+            case 'rajeev':
+                
+            case 'shavnam':
+        }
     }
 
 </script>
