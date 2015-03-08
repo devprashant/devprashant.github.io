@@ -557,15 +557,16 @@ function initBuffers(){
     recMotionVertexColorBuffer.numItems = 4;
 }
 //========================Toggle==================================
-var status = [1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,0];
+var roomStatus = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+console.log('oroomStatus[4]:' + roomStatus[4]);
 
 function toggle() {
-   /* if (status[8]== 0){
-        status[8] = 1; 
+   /* if (roomStatus[8]== 0){
+        roomStatus[8] = 1; 
     } else {
-        status[8] = 0;
+        roomStatus[8] = 0;
     }
-    console.log("status[8]: " + status[8]);
+    console.log("roomStatus[8]: " + roomStatus[8]);
     */
     
 }
@@ -596,7 +597,7 @@ function drawScene(){
     gl.bindBuffer(gl.ARRAY_BUFFER, roomVertexPositionBuffer[8]);
     gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, roomVertexPositionBuffer[8].itemSize, gl.FLOAT, false, 0, 0);
     //check occupency of room
-    if (status[8] == 1){
+    if (roomStatus[8] == 1){
     gl.bindBuffer(gl.ARRAY_BUFFER, roomOccupiedVertexColorBuffer);
     gl.vertexAttribPointer(shaderProgram.vertexColorAttribute, roomOccupiedVertexColorBuffer.itemSize, gl.FLOAT, false, 0, 0);
     } else {
@@ -610,7 +611,7 @@ function drawScene(){
     gl.bindBuffer(gl.ARRAY_BUFFER, roomVertexPositionBuffer[9]);
     gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, roomVertexPositionBuffer[9].itemSize, gl.FLOAT, false, 0, 0);
     //check occupency of room
-    if (status[9] == 1){
+    if (roomStatus[9] == 1){
     gl.bindBuffer(gl.ARRAY_BUFFER, roomOccupiedVertexColorBuffer);
     gl.vertexAttribPointer(shaderProgram.vertexColorAttribute, roomOccupiedVertexColorBuffer.itemSize, gl.FLOAT, false, 0, 0);
     } else {
@@ -624,7 +625,7 @@ function drawScene(){
     gl.bindBuffer(gl.ARRAY_BUFFER, roomVertexPositionBuffer[0]);
     gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, roomVertexPositionBuffer[0].itemSize, gl.FLOAT, false, 0, 0);
    //check occupency of room
-    if (status[0] == 1){
+    if (roomStatus[0] == 1){
     gl.bindBuffer(gl.ARRAY_BUFFER, roomOccupiedVertexColorBuffer);
     gl.vertexAttribPointer(shaderProgram.vertexColorAttribute, roomOccupiedVertexColorBuffer.itemSize, gl.FLOAT, false, 0, 0);
     } else {
@@ -638,7 +639,7 @@ function drawScene(){
     gl.bindBuffer(gl.ARRAY_BUFFER, roomVertexPositionBuffer[1]);
     gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, roomVertexPositionBuffer[1].itemSize, gl.FLOAT, false, 0, 0);
     //check occupency of room
-    if (status[1] == 1){
+    if (roomStatus[1] == 1){
     gl.bindBuffer(gl.ARRAY_BUFFER, roomOccupiedVertexColorBuffer);
     gl.vertexAttribPointer(shaderProgram.vertexColorAttribute, roomOccupiedVertexColorBuffer.itemSize, gl.FLOAT, false, 0, 0);
     } else {
@@ -652,7 +653,7 @@ function drawScene(){
     gl.bindBuffer(gl.ARRAY_BUFFER, roomVertexPositionBuffer[2]);
     gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, roomVertexPositionBuffer[2].itemSize, gl.FLOAT, false, 0, 0);
     //check occupency of room
-    if (status[2] == 1){
+    if (roomStatus[2] == 1){
     gl.bindBuffer(gl.ARRAY_BUFFER, roomOccupiedVertexColorBuffer);
     gl.vertexAttribPointer(shaderProgram.vertexColorAttribute, roomOccupiedVertexColorBuffer.itemSize, gl.FLOAT, false, 0, 0);
     } else {
@@ -666,7 +667,7 @@ function drawScene(){
     gl.bindBuffer(gl.ARRAY_BUFFER, roomVertexPositionBuffer[3]);
     gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, roomVertexPositionBuffer[3].itemSize, gl.FLOAT, false, 0, 0);
     //check occupency of room
-    if (status[3] == 1){
+    if (roomStatus[3] == 1){
     gl.bindBuffer(gl.ARRAY_BUFFER, roomOccupiedVertexColorBuffer);
     gl.vertexAttribPointer(shaderProgram.vertexColorAttribute, roomOccupiedVertexColorBuffer.itemSize, gl.FLOAT, false, 0, 0);
     } else {
@@ -680,14 +681,14 @@ function drawScene(){
     gl.bindBuffer(gl.ARRAY_BUFFER, roomVertexPositionBuffer[4]);
     gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, roomVertexPositionBuffer[4].itemSize, gl.FLOAT, false, 0, 0);
     //check occupency of room
-    if (status[4] == 1){
+    if (roomStatus[4] == 1){
     gl.bindBuffer(gl.ARRAY_BUFFER, roomOccupiedVertexColorBuffer);
     gl.vertexAttribPointer(shaderProgram.vertexColorAttribute, roomOccupiedVertexColorBuffer.itemSize, gl.FLOAT, false, 0, 0);
     } else {
     gl.bindBuffer(gl.ARRAY_BUFFER, roomVertexColorBuffer);
     gl.vertexAttribPointer(shaderProgram.vertexColorAttribute, roomVertexColorBuffer.itemSize, gl.FLOAT, false, 0, 0);
-    } 
-    console.log('status[4]:' +status[4]);
+    }
+    console.log('roomStatus[4]:' +roomStatus[4]);
     setMatrixUniforms();
     gl.drawArrays(gl.TRIANGLE_STRIP, 0, roomVertexPositionBuffer[4].numItems);
 
@@ -695,7 +696,7 @@ function drawScene(){
     gl.bindBuffer(gl.ARRAY_BUFFER, roomVertexPositionBuffer[5]);
     gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, roomVertexPositionBuffer[5].itemSize, gl.FLOAT, false, 0, 0);
     //check occupency of room
-    if (status[5] == 1){
+    if (roomStatus[5] == 1){
     gl.bindBuffer(gl.ARRAY_BUFFER, roomOccupiedVertexColorBuffer);
     gl.vertexAttribPointer(shaderProgram.vertexColorAttribute, roomOccupiedVertexColorBuffer.itemSize, gl.FLOAT, false, 0, 0);
     } else {
@@ -709,7 +710,7 @@ function drawScene(){
     gl.bindBuffer(gl.ARRAY_BUFFER, roomVertexPositionBuffer[6]);
     gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, roomVertexPositionBuffer[6].itemSize, gl.FLOAT, false, 0, 0);
     //check occupency of room
-    if (status[6] == 1){
+    if (roomStatus[6] == 1){
     gl.bindBuffer(gl.ARRAY_BUFFER, roomOccupiedVertexColorBuffer);
     gl.vertexAttribPointer(shaderProgram.vertexColorAttribute, roomOccupiedVertexColorBuffer.itemSize, gl.FLOAT, false, 0, 0);
     } else {
@@ -723,7 +724,7 @@ function drawScene(){
     gl.bindBuffer(gl.ARRAY_BUFFER, roomVertexPositionBuffer[7]);
     gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, roomVertexPositionBuffer[7].itemSize, gl.FLOAT, false, 0, 0);
     //check occupency of room
-    if (status[7] == 1){
+    if (roomStatus[7] == 1){
     gl.bindBuffer(gl.ARRAY_BUFFER, roomOccupiedVertexColorBuffer);
     gl.vertexAttribPointer(shaderProgram.vertexColorAttribute, roomOccupiedVertexColorBuffer.itemSize, gl.FLOAT, false, 0, 0);
     } else {
@@ -737,7 +738,7 @@ function drawScene(){
     gl.bindBuffer(gl.ARRAY_BUFFER, roomVertexPositionBuffer[10]);
     gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, roomVertexPositionBuffer[10].itemSize, gl.FLOAT, false, 0, 0);
     //check occupency of room
-    if (status[10] == 1){
+    if (roomStatus[10] == 1){
     gl.bindBuffer(gl.ARRAY_BUFFER, roomOccupiedVertexColorBuffer);
     gl.vertexAttribPointer(shaderProgram.vertexColorAttribute, roomOccupiedVertexColorBuffer.itemSize, gl.FLOAT, false, 0, 0);
     } else {
@@ -751,7 +752,7 @@ function drawScene(){
     gl.bindBuffer(gl.ARRAY_BUFFER, roomVertexPositionBuffer[11]);
     gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, roomVertexPositionBuffer[11].itemSize, gl.FLOAT, false, 0, 0);
     //check occupency of room
-    if (status[11] == 1){
+    if (roomStatus[11] == 1){
     gl.bindBuffer(gl.ARRAY_BUFFER, roomOccupiedVertexColorBuffer);
     gl.vertexAttribPointer(shaderProgram.vertexColorAttribute, roomOccupiedVertexColorBuffer.itemSize, gl.FLOAT, false, 0, 0);
     } else {
@@ -765,7 +766,7 @@ function drawScene(){
     gl.bindBuffer(gl.ARRAY_BUFFER, roomVertexPositionBuffer[12]);
     gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, roomVertexPositionBuffer[12].itemSize, gl.FLOAT, false, 0, 0);
     //check occupency of room
-    if (status[12] == 1){
+    if (roomStatus[12] == 1){
     gl.bindBuffer(gl.ARRAY_BUFFER, roomOccupiedVertexColorBuffer);
     gl.vertexAttribPointer(shaderProgram.vertexColorAttribute, roomOccupiedVertexColorBuffer.itemSize, gl.FLOAT, false, 0, 0);
     } else {
@@ -779,7 +780,7 @@ function drawScene(){
     gl.bindBuffer(gl.ARRAY_BUFFER, roomVertexPositionBuffer[13]);
     gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, roomVertexPositionBuffer[13].itemSize, gl.FLOAT, false, 0, 0);
     //check occupency of room
-    if (status[13] == 1){
+    if (roomStatus[13] == 1){
     gl.bindBuffer(gl.ARRAY_BUFFER, roomOccupiedVertexColorBuffer);
     gl.vertexAttribPointer(shaderProgram.vertexColorAttribute, roomOccupiedVertexColorBuffer.itemSize, gl.FLOAT, false, 0, 0);
     } else {
@@ -793,7 +794,7 @@ function drawScene(){
     gl.bindBuffer(gl.ARRAY_BUFFER, roomVertexPositionBuffer[14]);
     gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, roomVertexPositionBuffer[14].itemSize, gl.FLOAT, false, 0, 0);
     //check occupency of room
-    if (status[14] == 1){
+    if (roomStatus[14] == 1){
     gl.bindBuffer(gl.ARRAY_BUFFER, roomOccupiedVertexColorBuffer);
     gl.vertexAttribPointer(shaderProgram.vertexColorAttribute, roomOccupiedVertexColorBuffer.itemSize, gl.FLOAT, false, 0, 0);
     } else {
@@ -807,7 +808,7 @@ function drawScene(){
     gl.bindBuffer(gl.ARRAY_BUFFER, roomVertexPositionBuffer[15]);
     gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, roomVertexPositionBuffer[15].itemSize, gl.FLOAT, false, 0, 0);
     //check occupency of room
-    if (status[15] == 1){
+    if (roomStatus[15] == 1){
     gl.bindBuffer(gl.ARRAY_BUFFER, roomOccupiedVertexColorBuffer);
     gl.vertexAttribPointer(shaderProgram.vertexColorAttribute, roomOccupiedVertexColorBuffer.itemSize, gl.FLOAT, false, 0, 0);
     } else {
@@ -821,7 +822,7 @@ function drawScene(){
     gl.bindBuffer(gl.ARRAY_BUFFER, roomVertexPositionBuffer[16]);
     gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, roomVertexPositionBuffer[16].itemSize, gl.FLOAT, false, 0, 0);
     //check occupency of room
-    if (status[16] == 1){
+    if (roomStatus[16] == 1){
     gl.bindBuffer(gl.ARRAY_BUFFER, roomOccupiedVertexColorBuffer);
     gl.vertexAttribPointer(shaderProgram.vertexColorAttribute, roomOccupiedVertexColorBuffer.itemSize, gl.FLOAT, false, 0, 0);
     } else {
@@ -835,7 +836,7 @@ function drawScene(){
     gl.bindBuffer(gl.ARRAY_BUFFER, roomVertexPositionBuffer[17]);
     gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, roomVertexPositionBuffer[17].itemSize, gl.FLOAT, false, 0, 0);
     //check occupency of room
-    if (status[17] == 1){
+    if (roomStatus[17] == 1){
     gl.bindBuffer(gl.ARRAY_BUFFER, roomOccupiedVertexColorBuffer);
     gl.vertexAttribPointer(shaderProgram.vertexColorAttribute, roomOccupiedVertexColorBuffer.itemSize, gl.FLOAT, false, 0, 0);
     } else {
@@ -849,7 +850,7 @@ function drawScene(){
     gl.bindBuffer(gl.ARRAY_BUFFER, roomVertexPositionBuffer[18]);
     gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, roomVertexPositionBuffer[18].itemSize, gl.FLOAT, false, 0, 0);
     //check occupency of room
-    if (status[18] == 1){
+    if (roomStatus[18] == 1){
     gl.bindBuffer(gl.ARRAY_BUFFER, roomOccupiedVertexColorBuffer);
     gl.vertexAttribPointer(shaderProgram.vertexColorAttribute, roomOccupiedVertexColorBuffer.itemSize, gl.FLOAT, false, 0, 0);
     } else {
@@ -863,7 +864,7 @@ function drawScene(){
     gl.bindBuffer(gl.ARRAY_BUFFER, roomVertexPositionBuffer[19]);
     gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, roomVertexPositionBuffer[19].itemSize, gl.FLOAT, false, 0, 0);
     //check occupency of room
-    if (status[19] == 1){
+    if (roomStatus[19] == 1){
     gl.bindBuffer(gl.ARRAY_BUFFER, roomOccupiedVertexColorBuffer);
     gl.vertexAttribPointer(shaderProgram.vertexColorAttribute, roomOccupiedVertexColorBuffer.itemSize, gl.FLOAT, false, 0, 0);
     } else {
