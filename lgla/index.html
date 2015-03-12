@@ -8,11 +8,11 @@ body {
     font-size: 22;
     font-family: 'Verdana';
 }
-#ra{
+#r8{
     padding-top: 166px;
     padding-left: 392px;
 }
-#rb{
+#r9{
     padding-top: 264px;
     padding-left: 502px;
 }
@@ -38,18 +38,57 @@ body {
     padding-left: 600px;
 }
 #r5{
-    padding-top: 434px;
+    padding-top: 425px;
     padding-left: 437px;
 }
 #r6{
-    padding-top: 434px;
+    padding-top: 425px;
     padding-left: 562px;
 }
 #r7{
     padding-top: 344px;
     padding-left: 270px;
 }
-
+#r10{
+    padding-top: 555px;
+    padding-left: 240px;
+}
+#r11{
+    padding-top: 496px;
+    padding-left: 472px;
+}
+#r12{
+    padding-top: 558px;
+    padding-left: 474px;
+}
+#r13{
+    padding-top: 558px;
+    padding-left: 650px;
+}
+#r14{
+    padding-top: 555px;
+    padding-left: 836px;
+}
+#r15{
+    padding-top: 442px;
+    padding-left: 650px;
+}
+#r16{
+    padding-top: 500px;
+    padding-left: 835px;
+}
+#r17{
+    padding-top: 444px;
+    padding-left: 835px;
+}
+#r18{
+    padding-top: 489px;
+    padding-left: 234px;
+}
+#r19{
+    padding-top: 465px;
+    padding-left: 471px;
+}
 </style>
 <script type="text/javascript" src="gl-matrix-min.js"></script>
 <script id="shader-fs" type="x-shader/x-fragment">
@@ -560,14 +599,14 @@ function initBuffers(){
 var roomStatus = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 console.log('oroomStatus[4]:' + roomStatus[4]);
 
-function toggle() {
-   /* if (roomStatus[8]== 0){
-        roomStatus[8] = 1; 
+function toggle(roomNumber) {
+   if (roomStatus[roomNumber]== 0){
+        roomStatus[roomNumber] = 1; 
     } else {
-        roomStatus[8] = 0;
+        roomStatus[roomNumber] = 0;
     }
-    console.log("roomStatus[8]: " + roomStatus[8]);
-    */
+    console.log("roomStatus[8]: " + roomStatus[roomNumber]);
+    
     
 }
 //========================Scene Drawing============================
@@ -899,11 +938,11 @@ function animate(){
         xSlider = 7.1;
 }
 function tick(){
-    requestAnimationFrame(tick);
+    //requestAnimationFrame(tick);
     handleKeys();
     
     drawScene();
-    animate();
+    //animate();
 }
 function webGLStart(){
 	var canvas = document.getElementById('lgla');
@@ -924,20 +963,31 @@ function webGLStart(){
 <script type="text/javascript">
     
     function floor1(){
-        document.getElementById('ra').innerHTML = "A-103";
-        document.getElementById('rb').innerHTML = "A-106";
+        document.getElementById('r8').innerHTML = "A-103";
+        document.getElementById('r9').innerHTML = "A-106";
         document.getElementById('r0').innerHTML = "A-102";
         document.getElementById('r1').innerHTML = "A-107";
         document.getElementById('r2').innerHTML = "A-101";
         document.getElementById('r3').innerHTML = "A-108";
         document.getElementById('r4').innerHTML = "A-112";
-        document.getElementById('r5').innerHTML = "       A-109";
+        document.getElementById('r5').innerHTML = "A-109";
         document.getElementById('r6').innerHTML = "";
         document.getElementById('r7').innerHTML = "";
+        document.getElementById('r10').innerHTML = "B-102";
+        document.getElementById('r11').innerHTML = "B-106";
+        document.getElementById('r12').innerHTML = "B-101";
+        document.getElementById('r13').innerHTML = "";
+        document.getElementById('r14').innerHTML = "B-107";
+        document.getElementById('r15').innerHTML = "B-110";
+        document.getElementById('r16').innerHTML = "B-108";
+        document.getElementById('r17').innerHTML = "";
+        document.getElementById('r18').innerHTML = "B-103";
+        document.getElementById('r19').innerHTML = "B-105";
+        
     }
     function floor2(){
-        document.getElementById('ra').innerHTML = "A-203";
-        document.getElementById('rb').innerHTML = "A-205";
+        document.getElementById('r8').innerHTML = "A-203";
+        document.getElementById('r9').innerHTML = "A-205";
         document.getElementById('r0').innerHTML = "A-202";
         document.getElementById('r1').innerHTML = "A-206";
         document.getElementById('r2').innerHTML = "A-201";
@@ -946,10 +996,20 @@ function webGLStart(){
         document.getElementById('r5').innerHTML = "A-211";
         document.getElementById('r6').innerHTML = "A-212";
         document.getElementById('r7').innerHTML = "A-207";
+        document.getElementById('r10').innerHTML = "B-202";
+        document.getElementById('r11').innerHTML = "B-206";
+        document.getElementById('r12').innerHTML = "B-201";
+        document.getElementById('r13').innerHTML = "B-207";
+        document.getElementById('r14').innerHTML = "B-208";
+        document.getElementById('r15').innerHTML = "B-213";
+        document.getElementById('r16').innerHTML = "B-209";
+        document.getElementById('r17').innerHTML = "B-210";
+        document.getElementById('r18').innerHTML = "B-203";
+        document.getElementById('r19').innerHTML = "B-205";
     }
     function floor3(){
-        document.getElementById('ra').innerHTML = "A-303";
-        document.getElementById('rb').innerHTML = "";
+        document.getElementById('r8').innerHTML = "A-303";
+        document.getElementById('r9').innerHTML = "";
         document.getElementById('r0').innerHTML = "A-302";
         document.getElementById('r1').innerHTML = "A-306";
         document.getElementById('r2').innerHTML = "A-301";
@@ -958,19 +1018,161 @@ function webGLStart(){
         document.getElementById('r5').innerHTML = "A-309";
         document.getElementById('r6').innerHTML = "";
         document.getElementById('r7').innerHTML = "A-307";
+        document.getElementById('r10').innerHTML = "B-302";
+        document.getElementById('r11').innerHTML = "B-306";
+        document.getElementById('r12').innerHTML = "B-301";
+        document.getElementById('r13').innerHTML = "B-307";
+        document.getElementById('r14').innerHTML = "B-313";
+        document.getElementById('r15').innerHTML = "B-312";
+        document.getElementById('r16').innerHTML = "B-308";
+        document.getElementById('r17').innerHTML = "";
+        document.getElementById('r18').innerHTML = "B-303";
+        document.getElementById('r19').innerHTML = "B-305";
     }
 
 </script>
 <script type="text/javascript">
-var d = new Date();
-    function member(who){
-        switch(who){
+var data = {
+  "rajeev" : {
+        "mon" : {
+            "one"  : {"roomNumber":18,"floor":2},
+            "two"  : {"roomNumber":3,"floor":1},
+            "three": {"roomNumber":3,"floor":1},
+            "four" : {"roomNumber":3,"floor":1},
+            "five" : {"roomNumber":3,"floor":1},
+            "six"  : {"roomNumber":3,"floor":1},
+            "seven": {"roomNumber":3,"floor":1},
+            "eight": {"roomNumber":3,"floor":1},
+            "nine" : {"roomNumber":3,"floor":1}
+        },
+       "tue" : {
+            "one"  : {"roomNumber":3,"floor":1},
+            "two"  : {"roomNumber":3,"floor":1},
+            "three": {"roomNumber":3,"floor":1},
+            "four" : {"roomNumber":14,"floor":1},
+            "five" : {"roomNumber":3,"floor":1},
+            "six"  : {"roomNumber":13,"floor":2},
+            "seven": {"roomNumber":3,"floor":1},
+            "eight": {"roomNumber":3,"floor":1},
+            "nine" : {"roomNumber":3,"floor":1}
+       },
+     "wed" : {
+            "one"  : {"roomNumber":3,"floor":1},
+            "two"  : {"roomNumber":18,"floor":2},
+            "three": {"roomNumber":3,"floor":1},
+            "four" : {"roomNumber":3,"floor":1},
+            "five" : {"roomNumber":3,"floor":1},
+            "six"  : {"roomNumber":13,"floor":2},
+            "seven": {"roomNumber":3,"floor":1},
+            "eight": {"roomNumber":3,"floor":1},
+            "nine" : {"roomNumber":3,"floor":1}
+       }
+  },
+  "shavnam" : {
+      "mon" : {
+            "one"  : {"roomNumber":14,"floor":1},
+            "two"  : {"roomNumber":15,"floor":1},
+            "three": {"roomNumber":1,"floor":3},
+            "four" : {"roomNumber":14,"floor":1},
+            "five" : {"roomNumber":15,"floor":1},
+            "six"  : {"roomNumber":8,"floor":1},
+            "seven": {"roomNumber":1,"floor":3},
+            "eight": {"roomNumber":15,"floor":1},
+            "nine" : {"roomNumber":15,"floor":1}
+        },
+       "tue" : {
+            "one"  : {"roomNumber":14,"floor":1},
+            "two"  : {"roomNumber":8,"floor":1},
+            "three": {"roomNumber":15,"floor":1},
+            "four" : {"roomNumber":14,"floor":1},
+            "five" : {"roomNumber":15,"floor":1},
+            "six"  : {"roomNumber":15,"floor":1},
+            "seven": {"roomNumber":8,"floor":2},
+            "eight": {"roomNumber":16,"floor":1},
+            "nine" : {"roomNumber":16,"floor":1}
+       },
+     "wed" : {
+            "one"  : {"roomNumber":15,"floor":1},
+            "two"  : {"roomNumber":14,"floor":1},
+            "three": {"roomNumber":15,"floor":1},
+            "four" : {"roomNumber":8,"floor":1},
+            "five" : {"roomNumber":15,"floor":1},
+            "six"  : {"roomNumber":8,"floor":1},
+            "seven": {"roomNumber":1,"floor":3},
+            "eight": {"roomNumber":14,"floor":1},
+            "nine" : {"roomNumber":15,"floor":1}
+       }
+  }
+};
 
-            case 'rajeev':
-                
-            case 'shavnam':
-        }
+function locate(name,day,period){
+    //make all rooms clear
+    roomStatus = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    webGLStart();
+
+  toggle(data[name][day][period].roomNumber);
+  webGLStart();
+  console.log(day);
+  console.log(data[name][day][period]);
+}
+
+var pname;
+function lshow(name){
+  var day = lday(3);
+  var period = lperiod(parseInt(slot()));
+  pname=name;
+  locate(pname,day,period);
+}
+function lshowPeriod(rperiod){
+  var day = lday(3);
+  var period = lperiod(parseInt(rperiod));
+  
+  locate(pname,day,period);
+}
+function lperiod(period){
+  switch(period){
+    case 1: return "one";
+    case 2: return "two";
+    case 3: return "three";
+    case 4: return "four";
+    case 5: return "five";
+    case 6: return "six";        
+    case 7: return "seven";
+    case 8: return "eight";
+    case 9: return "nine";
     }
+}
+function lday(day){
+  switch(day){
+    case 0: return "sun";
+    case 1: return "mon";
+    case 2: return "tue";
+    case 3: return "wed";
+    case 4: return "thu";
+    case 5: return "fri";
+    case 6: return "sat";        
+    }
+}
+
+function slot(){
+  var d = new Date();
+  if (d.getHours() < 9) return;
+  if (d.getHours() > 9 && d.getHours() < 10 && d.getMinutes() >=20 && d.getMinutes() <=59) return "1";
+  if (d.getHours() >=10  && d.getHours() < 11 && d.getMinutes() >=0 && d.getMinutes() <10) return "1";
+  if (d.getHours() >=10  && d.getHours() < 11 && d.getMinutes() >=10 && d.getMinutes() <59) return "2";
+  if (d.getHours() >=11  && d.getHours() < 12 && d.getMinutes() >=0 && d.getMinutes() <50) return "3";
+  if (d.getHours() >=11  && d.getHours() < 12 && d.getMinutes() >=50 && d.getMinutes() <59) return "4";
+  if (d.getHours() >=12  && d.getHours() < 13 && d.getMinutes() >=0 && d.getMinutes() <40) return "4";
+  if (d.getHours() >=12  && d.getHours() < 13 && d.getMinutes() >=40 && d.getMinutes() <59) return "5";
+  if (d.getHours() >=13  && d.getHours() < 14 && d.getMinutes() >=0 && d.getMinutes() <20) return "5";
+  if (d.getHours() >=13  && d.getHours() < 14 && d.getMinutes() >=20 && d.getMinutes() <59) return "6";
+  if (d.getHours() >=14  && d.getHours() < 15 && d.getMinutes() >=0 && d.getMinutes() <5) return "6";
+  if (d.getHours() >=14  && d.getHours() < 15 && d.getMinutes() >=5 && d.getMinutes() <50) return "7";
+  if (d.getHours() >=14  && d.getHours() < 15 && d.getMinutes() >=50 && d.getMinutes() <59) return "8";
+  if (d.getHours() >=15  && d.getHours() < 16 && d.getMinutes() >=0 && d.getMinutes() <35) return "8";
+  if (d.getHours() >=15  && d.getHours() < 16 && d.getMinutes() >=35 && d.getMinutes() <59) return "9";
+  if (d.getHours() >=16  && d.getHours() < 17 && d.getMinutes() >=0 && d.getMinutes() <20) return "9";
+}
 
 </script>
 <body onload="webGLStart();">
@@ -978,15 +1180,45 @@ var d = new Date();
         <button type="button" onclick="floor1();">Floor 1</button>
         <button type="button" onclick="floor2();">Floor 2</button>
         <button type="button" onclick="floor3();">Floor 3</button>
-        <div id="ra" class="room">ra</div>
-        <div id="rb" class="room">rb</div>
-        <div id="r0" class="room">r0</div>
-        <div id="r1" class="room">r1</div>
-        <div id="r2" class="room">r2</div>
-        <div id="r3" class="room">r3</div>
-        <div id="r4" class="room">r4</div>
-        <div id="r5" class="room">r5</div>
-        <div id="r6" class="room">r6</div>
-        <div id="r7" class="room">r7</div>
+        <select name="person" onchange="lshow(this.value)">
+            <option value="">------</option>
+            <option value="rajeev">Rajeev</option>
+            <option value="shavnam" id="name">Shavnam</option>
+        </select>
+        <select name="period" onchange="lshowPeriod(this.value)">
+            <option value="1">one</option>
+            <option value="2">two</option>
+            <option value="3">three</option>
+            <option value="4">four</option>
+            <option value="5">five</option>
+            <option value="6">six</option>
+            <option value="7">seven</option>
+            <option value="8">eight</option>
+            <option value="9">nine</option>
+        </select>
+        <div id="r8" class="room"></div>
+        <div id="r9" class="room"></div>
+        <div id="r0" class="room"></div>
+        <div id="r1" class="room"></div>
+        <div id="r2" class="room"></div>
+        <div id="r3" class="room"></div>
+        <div id="r4" class="room"></div>
+        <div id="r5" class="room"></div>
+        <div id="r6" class="room"></div>
+        <div id="r7" class="room"></div>
+        <div id="r10" class="room"></div>
+        <div id="r11" class="room"></div>
+        <div id="r12" class="room"></div>
+        <div id="r13" class="room"></div>
+        <div id="r14" class="room"></div>
+        <div id="r15" class="room"></div>
+        <div id="r16" class="room"></div>
+        <div id="r17" class="room"></div>
+        <div id="r18" class="room"></div>
+        <div id="r19" class="room"></div>
+
+        
+
 		<canvas id="lgla" style="border: none;" width="1300" height="600"></canvas>
 </body>
+</html>
