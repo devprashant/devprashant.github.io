@@ -1112,6 +1112,9 @@ function locate(name,day,period){
 
   toggle(data[name][day][period].roomNumber);
   webGLStart();
+  if (data[name][day][period].floor == 1) floor1();
+  if (data[name][day][period].floor == 2) floor2();
+  if (data[name][day][period].floor == 3) floor3();
   console.log(day);
   console.log(data[name][day][period]);
 }
@@ -1218,6 +1221,6 @@ function slot(){
         <div id="r19" class="room"></div>
 
 
-    	<canvas id="lgla" style="border: none;" width="1300" height="600"></canvas>
+	<canvas id="lgla" style="border: none;" width="1300" height="600"></canvas>
 </body>
 </html>
