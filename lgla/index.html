@@ -1,6 +1,6 @@
 <style>
 body {
-    background-color: ;
+    background-color: black ;
 }
 .room {
     color: yellow;
@@ -1066,6 +1066,39 @@ var data = {
             "seven": {"roomNumber":3,"floor":1},
             "eight": {"roomNumber":3,"floor":1},
             "nine" : {"roomNumber":3,"floor":1}
+       },
+     "thu" : {
+            "one"  : {"roomNumber":13,"floor":2},
+            "two"  : {"roomNumber":3,"floor":1},
+            "three": {"roomNumber":3,"floor":1},
+            "four" : {"roomNumber":14,"floor":1},
+            "five" : {"roomNumber":3,"floor":1},
+            "six"  : {"roomNumber":3,"floor":1},
+            "seven": {"roomNumber":3,"floor":1},
+            "eight": {"roomNumber":3,"floor":1},
+            "nine" : {"roomNumber":3,"floor":1}
+       },
+     "fri" : {
+            "one"  : {"roomNumber":3,"floor":1},
+            "two"  : {"roomNumber":13,"floor":2},
+            "three": {"roomNumber":3,"floor":1},
+            "four" : {"roomNumber":8,"floor":2},
+            "five" : {"roomNumber":3,"floor":1},
+            "six"  : {"roomNumber":3,"floor":1},
+            "seven": {"roomNumber":14,"floor":1},
+            "eight": {"roomNumber":14,"floor":1},
+            "nine" : {"roomNumber":3,"floor":1}
+       },
+      "sat" : {
+            "one"  : {"roomNumber":3,"floor":1},
+            "two"  : {"roomNumber":3,"floor":1},
+            "three": {"roomNumber":8,"floor":2},
+            "four" : {"roomNumber":3,"floor":1},
+            "five" : {"roomNumber":3,"floor":1},
+            "six"  : {"roomNumber":14,"floor":1},
+            "seven": {"roomNumber":3,"floor":1},
+            "eight": {"roomNumber":16,"floor":1},
+            "nine" : {"roomNumber":16,"floor":1}
        }
   },
   "shavnam" : {
@@ -1101,6 +1134,39 @@ var data = {
             "seven": {"roomNumber":1,"floor":3},
             "eight": {"roomNumber":14,"floor":1},
             "nine" : {"roomNumber":15,"floor":1}
+       },
+     "thu" : {
+            "one"  : {"roomNumber":1,"floor":3},
+            "two"  : {"roomNumber":15,"floor":1},
+            "three": {"roomNumber":13,"floor":1},
+            "four" : {"roomNumber":15,"floor":1},
+            "five" : {"roomNumber":15,"floor":1},
+            "six"  : {"roomNumber":1,"floor":3},
+            "seven": {"roomNumber":15,"floor":1},
+            "eight": {"roomNumber":13,"floor":1},
+            "nine" : {"roomNumber":15,"floor":1}
+       },
+     "fri" : {
+            "one"  : {"roomNumber":15,"floor":1},
+            "two"  : {"roomNumber":13,"floor":1},
+            "three": {"roomNumber":15,"floor":1},
+            "four" : {"roomNumber":13,"floor":1},
+            "five" : {"roomNumber":15,"floor":1},
+            "six"  : {"roomNumber":15,"floor":1},
+            "seven": {"roomNumber":15,"floor":1},
+            "eight": {"roomNumber":15,"floor":1},
+            "nine" : {"roomNumber":15,"floor":1}
+       },
+     "sat" : {
+            "one"  : {"roomNumber":1,"floor":3},
+            "two"  : {"roomNumber":15,"floor":1},
+            "three": {"roomNumber":8,"floor":1},
+            "four" : {"roomNumber":13,"floor":1},
+            "five" : {"roomNumber":15,"floor":1},
+            "six"  : {"roomNumber":15,"floor":1},
+            "seven": {"roomNumber":13,"floor":1},
+            "eight": {"roomNumber":15,"floor":1},
+            "nine" : {"roomNumber":15,"floor":1}
        }
   }
 };
@@ -1121,13 +1187,13 @@ function locate(name,day,period){
 
 var pname;
 function lshow(name){
-  var day = lday(3);
+  var day = lday(parseInt(new Date().getDay()));
   var period = lperiod(parseInt(slot()));
   pname=name;
   locate(pname,day,period);
 }
 function lshowPeriod(rperiod){
-  var day = lday(3);
+  var day = lday(parseInt(new Date().getDay()));
   var period = lperiod(parseInt(rperiod));
   
   locate(pname,day,period);
