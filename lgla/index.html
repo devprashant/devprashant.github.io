@@ -1168,7 +1168,76 @@ var data = {
             "eight": {"roomNumber":15,"floor":1},
             "nine" : {"roomNumber":15,"floor":1}
        }
+    },
+    "shivgiri" : {
+        "mon" : {
+            "one"  : {"roomNumber":3,"floor":1},
+            "two"  : {"roomNumber":8,"floor":3},
+            "three": {"roomNumber":3,"floor":1},
+            "four" : {"roomNumber":1,"floor":2},
+            "five" : {"roomNumber":3,"floor":1},
+            "six"  : {"roomNumber":3,"floor":1},
+            "seven": {"roomNumber":3,"floor":1},
+            "eight": {"roomNumber":3,"floor":1},
+            "nine" : {"roomNumber":3,"floor":1}
+        },
+       "tue" : {
+            "one"  : {"roomNumber":3,"floor":1},
+            "two"  : {"roomNumber":3,"floor":1},
+            "three": {"roomNumber":3,"floor":1},
+            "four" : {"roomNumber":3,"floor":1},
+            "five" : {"roomNumber":3,"floor":1},
+            "six"  : {"roomNumber":1,"floor":2},
+            "seven": {"roomNumber":3,"floor":1},
+            "eight": {"roomNumber":3,"floor":1},
+            "nine" : {"roomNumber":3,"floor":1}
+       },
+     "wed" : {
+            "one"  : {"roomNumber":3,"floor":1},
+            "two"  : {"roomNumber":8,"floor":3},
+            "three": {"roomNumber":3,"floor":1},
+            "four" : {"roomNumber":3,"floor":1},
+            "five" : {"roomNumber":3,"floor":1},
+            "six"  : {"roomNumber":3,"floor":1},
+            "seven": {"roomNumber":3,"floor":1},
+            "eight": {"roomNumber":3,"floor":1},
+            "nine" : {"roomNumber":3,"floor":1}
+       },
+     "thu" : {
+            "one"  : {"roomNumber":13,"floor":2},
+            "two"  : {"roomNumber":3,"floor":1},
+            "three": {"roomNumber":3,"floor":1},
+            "four" : {"roomNumber":14,"floor":1},
+            "five" : {"roomNumber":3,"floor":1},
+            "six"  : {"roomNumber":3,"floor":1},
+            "seven": {"roomNumber":3,"floor":1},
+            "eight": {"roomNumber":3,"floor":1},
+            "nine" : {"roomNumber":3,"floor":1}
+       },
+     "fri" : {
+            "one"  : {"roomNumber":3,"floor":1},
+            "two"  : {"roomNumber":8,"floor":3},
+            "three": {"roomNumber":3,"floor":1},
+            "four" : {"roomNumber":1,"floor":2},
+            "five" : {"roomNumber":3,"floor":1},
+            "six"  : {"roomNumber":3,"floor":1},
+            "seven": {"roomNumber":3,"floor":1},
+            "eight": {"roomNumber":3,"floor":1},
+            "nine" : {"roomNumber":3,"floor":1}
+       },
+      "sat" : {
+            "one"  : {"roomNumber":3,"floor":1},
+            "two"  : {"roomNumber":3,"floor":1},
+            "three": {"roomNumber":3,"floor":1},
+            "four" : {"roomNumber":3,"floor":1},
+            "five" : {"roomNumber":3,"floor":1},
+            "six"  : {"roomNumber":3,"floor":1},
+            "seven": {"roomNumber":3,"floor":1},
+            "eight": {"roomNumber":3,"floor":1},
+            "nine" : {"roomNumber":3,"floor":1},
+       }
   }
+  
 };
 
 function locate(name,day,period){
@@ -1252,7 +1321,8 @@ function slot(){
         <select name="person" onchange="lshow(this.value)">
             <option value="">------</option>
             <option value="rajeev">Rajeev</option>
-            <option value="shavnam" id="name">Shavnam</option>
+            <option value="shavnam">Shavnam</option>
+            <option value="shivgiri">Shiv Giri</option> 
         </select>
         <select name="period" onchange="lshowPeriod(this.value)">
             <option value="1">one</option>
