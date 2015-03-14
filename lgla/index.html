@@ -1295,7 +1295,7 @@ function lday(day){
 function slot(){
   var d = new Date();
   if (d.getHours() < 9) return;
-  if (d.getHours() > 9 && d.getHours() < 10 && d.getMinutes() >=20 && d.getMinutes() <=59) return "1";
+  if (d.getHours() >= 9 && d.getHours() < 10 && d.getMinutes() >=20 && d.getMinutes() <=59) return "1";
   if (d.getHours() >=10  && d.getHours() < 11 && d.getMinutes() >=0 && d.getMinutes() <10) return "1";
   if (d.getHours() >=10  && d.getHours() < 11 && d.getMinutes() >=10 && d.getMinutes() <59) return "2";
   if (d.getHours() >=11  && d.getHours() < 12 && d.getMinutes() >=0 && d.getMinutes() <50) return "3";
